@@ -1,0 +1,286 @@
+.home-container {
+  position: relative;
+  width: calc(100% - 8px);
+  margin: 4px auto;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.hero-container {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 8px);
+  /* Background image set via inline style in React */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(20, 15, 12, 0.7) 0%,
+    rgba(20, 15, 12, 0.4) 40%,
+    rgba(20, 15, 12, 0.6) 100%
+  );
+  z-index: 1;
+}
+
+/* Navbar */
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 80px;
+  background: transparent;
+  border-bottom: none;
+}
+
+.logo img {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+}
+
+.nav-links a {
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.85);
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #fff;
+}
+
+/* Buttons */
+.nav-action .btn-light {
+  padding: 12px 28px;
+  font-size: 15px;
+  border-radius: 6px;
+}
+
+.btn-light {
+  background-color: #ebd5c1;
+  color: #2b1f16;
+  border: none;
+  padding: 16px 36px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(235, 213, 193, 0.2);
+}
+
+.btn-light:hover {
+  background-color: #f6e3d2;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(235, 213, 193, 0.3);
+}
+
+.btn-dark {
+  background-color: rgba(38, 30, 28, 0.8);
+  color: #f1ebd9;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 16px 36px;
+  font-size: 16px;
+  font-weight: 400;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-dark:hover {
+  background-color: rgba(48, 38, 35, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+/* Hero Content */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  /* To give the center-left placement illusion if needed, but visually it feels perfectly centered in reference. We keep it strictly centered to match the visual symmetry. */
+}
+
+.subtitle {
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: #EADBC8;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 76px;
+  line-height: 1.15;
+  font-weight: 400;
+  margin-bottom: 24px;
+  color: #F5F5F5;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+}
+
+.description {
+  font-size: 17px;
+  color: #D1C7BC;
+  max-width: 680px;
+  font-weight: 300;
+  margin-bottom: 48px;
+  line-height: 1.6;
+}
+
+.button-group {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+}
+
+/* Display text toggle classes */
+.mobile-text {
+  display: none;
+}
+.desktop-text {
+  display: block;
+}
+
+/* Base background setup relying on CSS custom properties passed from style prop */
+.hero-container {
+  background-image: var(--bg-desktop);
+}
+
+.hamburger-menu {
+  display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .title {
+    font-size: 56px;
+  }
+  .navbar {
+    padding: 20px 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-container {
+    width: 100vw;
+    min-height: 100vh;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  
+  .hero-content {
+    justify-content: center;
+    padding-top: 30px; /* Reduced to gracefully lift the entire block */
+    padding-bottom: 20px; /* Lifts the center of gravity */
+  }
+
+  .title {
+    font-size: 34px; /* Reduced to ensure "Thoughtfully Designed" fits on one line */
+    line-height: 1.2;
+  }
+  .subtitle {
+    font-size: 13px; /* Softer, slightly smaller subtitle */
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+  }
+  .description {
+    font-size: 15px;
+    margin-bottom: 86px; /* Greatly expanded to ensure buttons remain correctly pressed down */
+    line-height: 1.6;
+  }
+  .desktop-text {
+    display: none;
+  }
+  .mobile-text {
+    display: block;
+  }
+
+  /* Navbar Adjustments */
+  .navbar {
+    padding: 28px 24px;
+    background: transparent;
+    border-bottom: none;
+  }
+  .logo img {
+    height: 48px;
+  }
+  .nav-links, .nav-action {
+    display: none;
+  }
+  .hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px; /* Compact width */
+    height: 18px; /* Tight proportion matching the gap */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  .hamburger-menu span {
+    width: 100%;
+    height: 3.5px; /* Thicker bold lines */
+    background-color: #ebd5c1;
+    border-radius: 4px; /* Fully pill-rounded ends */
+  }
+
+  /* Buttons */
+  .button-group {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 16px;
+    margin-top: 0; /* Remove auto stretching */
+  }
+  .button-group button {
+    width: 100%;
+    max-width: 300px; /* Slightly narrower matching pill style */
+    padding: 18px 0;
+    margin: 0 auto;
+    font-size: 18px;
+    font-weight: 300;
+    border-radius: 12px;
+  }
+
+  .btn-dark {
+    border: none; /* Removed white hairline border to match soft design */
+  }
+
+  /* Dynamic image */
+  .hero-container {
+    background-image: var(--bg-mobile) !important;
+  }
+}

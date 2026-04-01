@@ -1,0 +1,47 @@
+/* Splash Screen Container */
+.splash-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background-color: #0f0a08; /* Premium deep dark brown matching hero overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.splash-container.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Base Logo */
+.splash-logo {
+  height: 160px; /* Significantly increased for a prominent, premium splash presence */
+  width: auto;
+  opacity: 0;
+  transform: scale(0.95);
+  animation: splashIntro 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* High-end cinematic entrance for the Logo */
+@keyframes splashIntro {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+    filter: blur(8px);
+  }
+  50% {
+    opacity: 1;
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.05); /* Slow drift inwards */
+    filter: blur(0px);
+  }
+}
