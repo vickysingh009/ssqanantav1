@@ -42,8 +42,9 @@ const Services = () => {
           </svg>
         </div>
 
-        {/* SLIDER GROUP (Top 3 items for mobile slider) */}
+        {/* SLIDER GROUP (Top 3 items for mobile slider + extra infinite simulated slides) */}
         <div className="mobile-slider-wrapper">
+          {/* BASE ORIGINAL ITEMS (Visible on both Desktop and Mobile) */}
           <div className="service-card card-tall">
             <img src={imgModular} alt="Modular Kitchen Design" className="service-img" loading="lazy" />
             <div className="service-overlay">
@@ -68,6 +69,49 @@ const Services = () => {
               <p className="service-tagline">Inspire · Perform · Brand</p>
             </div>
           </div>
+
+          {/* DUPLICATE COPIES FOR INFINITE SLIDER (Hidden strictly on Desktop) */}
+          {[1, 2, 3, 4].map((setIndex) => (
+            <React.Fragment key={setIndex}>
+              {/* Added Living Room and Bedroom to the swipe queue */}
+              <div className="service-card mobile-only-slide">
+                <img src={imgLiving} alt="Living Room Design" className="service-img" loading="lazy" />
+                <div className="service-overlay">
+                  <h3 className="service-name">Living Room Design</h3>
+                </div>
+              </div>
+              <div className="service-card mobile-only-slide">
+                <img src={imgBedroom} alt="Bedroom Interior" className="service-img" loading="lazy" />
+                <div className="service-overlay">
+                  <h3 className="service-name">Bedroom Interior</h3>
+                </div>
+              </div>
+              {/* Repeat the original 3 context to simulate infinity */}
+              {setIndex < 4 && (
+                <>
+                  <div className="service-card mobile-only-slide">
+                    <img src={imgModular} alt="Modular Kitchen Design" className="service-img" loading="lazy" />
+                    <div className="service-overlay">
+                      <h3 className="service-name">Modular Kitchen Design</h3>
+                    </div>
+                  </div>
+                  <div className="service-card mobile-only-slide">
+                    <img src={imgResidential} alt="Residential Interior Design" className="service-img" loading="lazy" 
+                        onError={(e) => { e.target.src = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop"; }} />
+                    <div className="service-overlay">
+                      <h3 className="service-name">Residential Interior Design</h3>
+                    </div>
+                  </div>
+                  <div className="service-card mobile-only-slide">
+                    <img src={imgOffice} alt="Office & Commercial" className="service-img" loading="lazy" />
+                    <div className="service-overlay">
+                      <h3 className="service-name">Office & Commercial</h3>
+                    </div>
+                  </div>
+                </>
+              )}
+            </React.Fragment>
+          ))}
         </div>
 
         {/* BOTTOM FIXED GROUP (Bottom 3 items for mobile grid) */}

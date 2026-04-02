@@ -67,7 +67,7 @@
 }
 
 /* Desktop Default: Hide mobile-only elements */
-.mobile-swipe-hint {
+.mobile-swipe-hint, .mobile-only-slide {
   display: none;
 }
 
@@ -310,5 +310,10 @@
   /* Remove taglines on phone to save space, keeping only the title */
   .service-tagline {
     display: none;
+  }
+  
+  /* Show the duplicated slides for infinite sequence on mobile */
+  .mobile-only-slide {
+    display: block;
   }
 }
