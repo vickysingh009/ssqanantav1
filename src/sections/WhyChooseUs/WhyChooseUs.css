@@ -325,7 +325,7 @@
   .wcu-right-image {
     order: 1; /* Forces image to top of the flex block */
     max-width: 100%;
-    aspect-ratio: 4/3; /* Made image significantly taller and more impactful on mobile */
+    aspect-ratio: 1/1; /* Explicit perfect square for maximum mobile height */
     border-radius: 12px;
   }
 
