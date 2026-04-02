@@ -16,16 +16,20 @@ const Home = () => {
       {/* Top of the fold components load immediately */}
       <HeroSection />
       
-      {/* Below the fold components are strictly viewport-locked and JS-lazy-loaded on demand */}
-      <Suspense fallback={<div style={{ minHeight: '300px', backgroundColor: '#efeadf' }}></div>}>
+      {/* Each lazy component gets its own Suspense boundary to prevent scroll collapses when chunk-fetching */}
+      <Suspense fallback={<div style={{ minHeight: '150px', backgroundColor: 'transparent' }}></div>}>
         <LazyViewportReveal minHeight="150px">
           <Ticker />
         </LazyViewportReveal>
-        
+      </Suspense>
+      
+      <Suspense fallback={<div style={{ minHeight: '600px', backgroundColor: 'transparent' }}></div>}>
         <LazyViewportReveal minHeight="600px">
           <Services />
         </LazyViewportReveal>
-        
+      </Suspense>
+      
+      <Suspense fallback={<div style={{ minHeight: '800px', backgroundColor: 'transparent' }}></div>}>
         <LazyViewportReveal minHeight="800px">
           <WhyChooseUs />
         </LazyViewportReveal>
