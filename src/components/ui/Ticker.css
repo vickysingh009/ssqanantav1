@@ -1,0 +1,66 @@
+.ticker-container {
+  width: 100%;
+  background-color: #A67C52; /* Warm gold-brown */
+  overflow: hidden;
+  display: flex;
+  padding: 8px 0; /* Thin horizontal strip */
+  box-sizing: border-box;
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 25s linear infinite;
+  /* Ensure smooth rendering during animation */
+  will-change: transform;
+}
+
+/* Hover to pause (optional, but good for UX) */
+.ticker-container:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+.ticker-content {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ticker-item-group {
+  display: flex;
+  align-items: center;
+}
+
+.ticker-item {
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.ticker-separator {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 8px; /* Slightly smaller for the dot/diamond */
+  margin: 0 45px; /* Consistent spacing between items */
+}
+
+@keyframes ticker-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Mobile adjustments: Pull up the ticker to overlap the hero section image */
+@media (max-width: 768px) {
+  .ticker-container {
+    position: relative;
+    margin-top: -28px; /* Pulls it up exactly over the hero bottom edge */
+    z-index: 20;
+  }
+}
