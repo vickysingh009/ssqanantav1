@@ -31,6 +31,9 @@ build/
 *.sln
 *.sw?
 
+# Testing and Coverage
+coverage/
+
 # OS Generated Files
 Thumbs.db
 ehthumbs.db
@@ -38,5 +41,8 @@ ehthumbs.db
 # Cache & Misc
 .eslintcache
 .stylelintcache
-npm-debug.log
-yarn-error.log
+.cache/
+
+# Hosting / Deployment
+.vercel/
+.netlify/

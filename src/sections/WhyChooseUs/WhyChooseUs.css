@@ -1,0 +1,445 @@
+.why-choose-us-section {
+  padding: 40px 0 40px 60px;
+  /* Condensed top/bottom padding to fit 100vh */
+  /* Bleeds transparently downwards allowing unified global background to handle seamless flow */
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  /* Reduced gap between top and bottom sections */
+}
+
+/* Subtle curved abstract logic in background (luxury feel) */
+.why-choose-us-section::before {
+  content: '';
+  position: absolute;
+  top: -150px;
+  right: 15vw;
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  border: 1px solid rgba(166, 124, 82, 0.12);
+  /* Soft flowing gold line */
+  z-index: 0;
+  pointer-events: none;
+}
+
+.why-choose-us-section::after {
+  content: '';
+  position: absolute;
+  bottom: -300px;
+  left: -100px;
+  width: 1200px;
+  height: 1200px;
+  border-radius: 50%;
+  border: 2px solid rgba(166, 124, 82, 0.04);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.wcu-main-container {
+  display: flex;
+  gap: 80px;
+  align-items: stretch;
+  position: relative;
+  z-index: 1;
+  /* Stay above background curves */
+}
+
+/* LEFT CONTENT */
+.wcu-left-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 20px;
+}
+
+.wcu-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  /* Smoothed down */
+  font-weight: 400;
+  color: #332d27;
+  margin-bottom: 12px;
+}
+
+.wcu-subtext {
+  font-size: 15px;
+  color: #797268;
+  line-height: 1.5;
+  max-width: 500px;
+  margin-bottom: 30px;
+  /* Shrunk spacing */
+}
+
+.wcu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 20px;
+  /* Tightened the 2x2 grid */
+  column-gap: 30px;
+}
+
+.wcu-grid-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.wcu-num {
+  font-size: 32px;
+  /* Scaled back down to fit */
+  font-weight: 400;
+  color: #A67C52;
+  font-family: 'Playfair Display', serif;
+}
+
+.wcu-num-container {
+  margin-bottom: 8px;
+  /* Pulled titles upwards tighter to numbers */
+}
+
+.wcu-num-line {
+  width: 40px;
+  height: 1.5px;
+  background-color: #8c735a;
+  margin-top: 6px;
+}
+
+.wcu-item-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #332d27;
+  margin-bottom: 4px;
+}
+
+.wcu-item-desc {
+  font-size: 13px;
+  color: #797268;
+  line-height: 1.4;
+}
+
+/* RIGHT CONTENT WRAPPER */
+.wcu-right-wrapper {
+  position: relative;
+  flex: 0.75;
+  max-width: 42vw;
+  display: flex;
+}
+
+/* Vertical Color Dots */
+.wcu-color-dots {
+  position: absolute;
+  left: -120px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  z-index: 10;
+}
+
+.wcu-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #2a221b;
+  /* Dark contrast border (almost black) so it's fully visible */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0.6;
+  /* Inactive opacity mask */
+}
+
+/* Active State Interactive Transforms */
+.wcu-dot:hover {
+  transform: scale(1.15);
+  opacity: 0.9;
+}
+
+.wcu-dot.active {
+  transform: scale(1.35);
+  /* Expand to show it's currently selected */
+  opacity: 1;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  border-width: 2px;
+}
+
+.wcu-dot.cream {
+  background-color: #f0e6d6;
+}
+
+.wcu-dot.blue {
+  background-color: #3b5970;
+}
+
+.wcu-dot.green {
+  background-color: #4b5e4a;
+}
+
+/* RIGHT IMAGE (Arch Cutout / Bleeding Edge) */
+.wcu-right-image {
+  position: relative;
+  /* Anchor for absolute overlays */
+  width: 100%;
+  max-height: 60vh;
+  border-top-left-radius: 120px;
+  border-bottom-left-radius: 15px;
+  overflow: hidden;
+  box-shadow: -15px 25px 45px rgba(0, 0, 0, 0.06);
+}
+
+/* Crossfade Variant Image Stack */
+.variant-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  pointer-events: none;
+  /* Prevent ghost hovering */
+}
+
+.variant-img.active {
+  position: relative;
+  /* Drives the container height solidly */
+  opacity: 1;
+  transform: scale(1);
+  z-index: 2;
+  /* Put above others for crisp rendering */
+  pointer-events: auto;
+}
+
+/* BOTTOM STATS (Dark brown container with gold text) */
+.wcu-stats-container {
+  background-color: #2a221b;
+  border-radius: 20px;
+  padding: 30px 60px;
+  /* Significantly vertically squished stats bar */
+  margin-right: 60px;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.wcu-stat {
+  text-align: center;
+  flex: 1;
+}
+
+.wcu-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  color: #dcb383;
+  /* Premium Gold */
+  margin-bottom: 8px;
+  font-weight: 400;
+}
+
+.wcu-stat-label {
+  font-size: 15px;
+  color: #fff;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.wcu-stat-sub {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.45);
+  /* Muted dark grayed text */
+  font-weight: 300;
+}
+
+.wcu-stat-divider {
+  width: 1px;
+  height: 50px;
+  background-color: rgba(220, 179, 131, 0.25);
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+  .why-choose-us-section {
+    padding: 40px 10px;
+  }
+
+  .wcu-main-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    /* Tighter gap */
+  }
+
+  .wcu-left-content {
+    display: contents;
+  }
+
+  .wcu-heading {
+    order: 1;
+    text-align: center;
+    margin-bottom: 5px;
+    /* Tighter */
+  }
+
+  .wcu-subtext {
+    order: 2;
+    text-align: center;
+    margin: 0 auto 10px auto;
+    /* Tighter */
+  }
+
+  .wcu-right-wrapper {
+    order: 3;
+    max-width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* Squeezed dots against image */
+  }
+
+  .wcu-grid {
+    order: 4;
+  }
+
+  .wcu-color-dots {
+    position: static;
+    order: 2; /* Forces dots to render below the image in the column */
+    flex-direction: row;
+    justify-content: center;
+    transform: none;
+    gap: 15px;
+    margin-top: 8px; /* Tighter against image */
+    margin-bottom: 15px; 
+  }
+
+  .wcu-right-image {
+    order: 1; /* Forces image to top of the flex block */
+    max-width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 12px;
+  }
+
+  .wcu-stats-container {
+    margin-right: 0;
+    padding: 25px;
+    /* Squeezed tablet stats */
+  }
+}
+
+@media (max-width: 768px) {
+  .why-choose-us-section {
+    padding: 50px 10px; /* Reduced from 20px */
+  }
+
+  .wcu-heading {
+    font-size: 34px;
+  }
+
+  .wcu-subtext {
+    font-size: 14px;
+  }
+
+  .wcu-grid {
+    grid-template-columns: 1fr;
+    gap: 15px; 
+  }
+
+  /* NEW PREMIUM PANEL STYLING FOR MOBILE */
+  .wcu-grid-item {
+    flex-direction: row;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid rgba(166, 124, 82, 0.2); /* Delicate gold border */
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); /* Subtle floating depth */
+    position: relative;
+  }
+
+  .wcu-num-container {
+    margin-bottom: 0;
+    padding-right: 18px; /* Room for the separator line */
+    margin-right: 18px;
+    border-right: 1px solid rgba(166, 124, 82, 0.25); /* Vertical divider */
+    display: flex;
+    align-items: center;
+  }
+
+  .wcu-num {
+    font-size: 24px; /* Scaled down for a sleek fit */
+    font-weight: 500;
+    color: #A67C52;
+    line-height: 1; 
+  }
+
+  .wcu-num-line {
+    display: none; 
+  }
+
+  .wcu-item-title {
+    margin-bottom: 0;
+    font-size: 16px; 
+    font-weight: 600; 
+    color: #332d27;
+  }
+
+  .wcu-item-desc {
+    display: none; /* "Sirf heading" - Hide the paragraph descriptive text on mobile */
+  }
+
+  /* Remove massive dark background padding completely for 3 separate box layout */
+  .wcu-stats-container {
+    flex-direction: row;
+    background-color: transparent;
+    padding: 0;
+    box-shadow: none;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  .wcu-color-dots {
+    gap: 12px; /* Shrinking gap to match smaller dots */
+    margin-top: 5px;
+    margin-bottom: 20px;
+  }
+
+  .wcu-dot {
+    width: 18px; /* Noticeably smaller dots for mobile explicitly requested */
+    height: 18px;
+    border-width: 2px;
+  }
+
+  .wcu-stat {
+    background-color: #2a221b;
+    border-radius: 12px;
+    padding: 20px 8px;
+    display: flex;
+    flex-direction: column; /* Stack stat block perfectly */
+    justify-content: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .wcu-stat-num {
+    font-size: 28px;
+  }
+  
+  .wcu-stat-label {
+    font-size: 13px;
+    margin-bottom: 0;
+  }
+
+  /* Hide the superfluous descriptive elements */
+  .wcu-stat-sub, .wcu-stat-divider {
+    display: none; 
+  }
+}
