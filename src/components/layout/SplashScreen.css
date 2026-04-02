@@ -21,7 +21,7 @@
 
 /* Base Logo */
 .splash-logo {
-  height: 160px; /* Significantly increased for a prominent, premium splash presence */
+  height: 220px; /* Making the image slightly bigger as requested */
   width: auto;
   opacity: 0;
   transform: scale(0.95);
