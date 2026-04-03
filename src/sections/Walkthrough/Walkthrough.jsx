@@ -68,7 +68,6 @@ export default function Walkthrough() {
   const [isInlinePlaying, setIsInlinePlaying] = useState(true);
   const [isInlineMuted, setIsInlineMuted] = useState(false);
   
-  // PERFORMANCE FIX: Intersection Observer state
   const [isInViewport, setIsInViewport] = useState(false);
   
   const sectionRef = useRef(null);
@@ -76,13 +75,12 @@ export default function Walkthrough() {
   const inlineVideoRef = useRef(null);
   const scrollContainerRef = useRef(null);
 
-  // PERFORMANCE FIX: Smart Pause Check (Only active when section is visible)
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsInViewport(entry.isIntersecting);
       },
-      { threshold: 0.1 } // 10% section dikhne par trigger hoga
+      { threshold: 0.1 } 
     );
 
     if (sectionRef.current) {
@@ -94,7 +92,6 @@ export default function Walkthrough() {
     };
   }, []);
 
-  // Handle Hero Video Play/Pause automatically based on viewport
   useEffect(() => {
     if (heroVideoRef.current) {
       if (isInViewport && isHeroPlaying) {
@@ -105,23 +102,30 @@ export default function Walkthrough() {
     }
   }, [isInViewport, isHeroPlaying]);
 
-  // PERFORMANCE FIX: Auto-scroll logic optimized
+  // JITTER FIX: Advanced auto-scroll logic with sub-pixel accumulation
   useEffect(() => {
     let animationFrameId;
     const container = scrollContainerRef.current;
     
-    // Evaluate matchMedia OUTSIDE the loop
     const supportsHover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
+    let accumulatedScroll = 0; // Tracks fractional pixels perfectly without jumping
+    const scrollSpeed = 1.2; // Adjust base speed here
 
     const scroll = () => {
-      // Smart Pause: Section screen par nahi hai, toh scroll loop bhi rok do
       const shouldPause = playingVideoId || (supportsHover && isHovered) || isTouched || !isInViewport;
 
       if (container && !shouldPause) {
-        container.scrollLeft += 0.8; 
+        accumulatedScroll += scrollSpeed;
         
-        if (container.scrollLeft >= container.scrollWidth / 2) {
-          container.scrollLeft = 0;
+        // Only apply scroll when accumulated pixel is a whole number (prevents integer truncation jitter)
+        if (accumulatedScroll >= 1) {
+          const pixelsToMove = Math.floor(accumulatedScroll);
+          container.scrollLeft += pixelsToMove;
+          accumulatedScroll -= pixelsToMove;
+          
+          if (container.scrollLeft >= container.scrollWidth / 2) {
+            container.scrollLeft = 0;
+          }
         }
       }
       animationFrameId = requestAnimationFrame(scroll);
@@ -129,7 +133,7 @@ export default function Walkthrough() {
 
     animationFrameId = requestAnimationFrame(scroll);
     return () => cancelAnimationFrame(animationFrameId);
-  }, [playingVideoId, isHovered, isTouched, isInViewport]); // Added isInViewport to dependencies
+  }, [playingVideoId, isHovered, isTouched, isInViewport]); 
 
   const toggleHeroPlayPause = () => {
     setIsHeroPlaying(!isHeroPlaying);
@@ -198,7 +202,6 @@ export default function Walkthrough() {
         `}
       </style>
 
-      {/* PERFORMANCE FIX: Attach sectionRef for Intersection Observer */}
       <section ref={sectionRef} className="py-24 px-6 md:px-16 lg:px-24 relative overflow-hidden">
         
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
@@ -233,7 +236,6 @@ export default function Walkthrough() {
               style={{ backgroundImage: `url(${heroVideo.thumbnail})` }}
             ></div>
 
-            {/* PERFORMANCE FIX: Lazy load hero video URL ONLY when in viewport */}
             <video 
               ref={heroVideoRef}
               src={isInViewport ? heroVideo.url : ""} 
@@ -261,8 +263,8 @@ export default function Walkthrough() {
 
           <div 
             ref={scrollContainerRef}
+            /* JITTER FIX: Removed the conflicting 'scrollBehavior: smooth' inline style */
             className={`w-full hide-scroll pt-8 pb-16 flex group ${playingVideoId ? 'overflow-x-auto [touch-action:pan-y]' : 'overflow-x-auto mask-edges'}`}
-            style={{ scrollBehavior: 'smooth' }} 
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onTouchStart={() => setIsTouched(true)}
@@ -270,7 +272,6 @@ export default function Walkthrough() {
             onTouchCancel={() => setIsTouched(false)}
           >
             <div className="flex w-max items-center px-[5vw] md:px-[20vw]">
-              {/* PERFORMANCE FIX: Reduced DOM nodes by creating 3 sets instead of 4 */}
               {[...Array(3)].map((_, arrayIndex) => (
                 <React.Fragment key={arrayIndex}>
                   {sliderVideos.map((video) => {
@@ -286,7 +287,6 @@ export default function Walkthrough() {
                     return (
                       <div key={uniqueId} className="pr-5 md:pr-8 flex-shrink-0">
                         
-                        {/* PERFORMANCE FIX: Replaced transition-all with specific transitions and added transform-gpu */}
                         <div 
                           className={`flex flex-col gap-3 md:gap-4 w-full transition-[transform,opacity,box-shadow] duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] transform-gpu ${
                             isOtherPlaying ? 'opacity-40 scale-[0.98]' : (!isPlaying ? 'cursor-pointer hover:scale-[1.02]' : 'scale-110 md:scale-[1.15] z-30 relative')
@@ -300,7 +300,6 @@ export default function Walkthrough() {
                             
                             {isPlaying ? (
                               <div className="w-full h-full relative animate-smooth-fade">
-                                {/* PERFORMANCE FIX: Video lazy loads automatically via this conditional rendering block */}
                                 <video 
                                   ref={inlineVideoRef}
                                   src={video.url} 
@@ -309,7 +308,7 @@ export default function Walkthrough() {
                                   loop
                                   muted={isInlineMuted}
                                   playsInline
-                                  preload="none" // Extra safety against heavy preloading
+                                  preload="none"
                                 />
 
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none"></div>
@@ -343,7 +342,6 @@ export default function Walkthrough() {
                               </div>
                             ) : (
                               <>
-                                {/* PERFORMANCE FIX: Added lazy loading to thumbnail images */}
                                 <img 
                                   src={video.thumbnail} 
                                   alt={video.title} 
