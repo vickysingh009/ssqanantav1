@@ -179,6 +179,13 @@ export default function Portfolio() {
           {/* Section Header */}
           <div className="flex flex-col items-center text-center mb-12 md:mb-16 gap-6 md:gap-8 max-w-3xl mx-auto">
             <div className="w-full">
+              <div className="flex items-center justify-center gap-4 mb-4 md:mb-5">
+                <span className="w-8 md:w-12 h-[1px] bg-[#A67C52]/80"></span>
+                <span className="font-sans text-[15px] md:text-[17px] font-medium tracking-[0.15em] text-[#A67C52] uppercase">
+                  PORTFOLIO
+                </span>
+                <span className="w-8 md:w-12 h-[1px] bg-[#A67C52]/80"></span>
+              </div>
               <h2 className="text-4xl md:text-5xl font-serif text-[#2D2825] mb-4 md:mb-6">
                 Our Featured Works
               </h2>
