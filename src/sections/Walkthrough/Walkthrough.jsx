@@ -75,6 +75,20 @@ export default function Walkthrough() {
   const inlineVideoRef = useRef(null);
   const scrollContainerRef = useRef(null);
 
+  // State ref to avoid React re-render tearing down the animation frame
+  const scrollStateRef = useRef({
+    playingVideoId,
+    isHovered,
+    isTouched,
+    isInViewport
+  });
+
+  // Sync state changes to ref
+  useEffect(() => {
+    scrollStateRef.current = { playingVideoId, isHovered, isTouched, isInViewport };
+  }, [playingVideoId, isHovered, isTouched, isInViewport]);
+
+  // Smart Pause Check (Only active when section is visible)
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -92,6 +106,7 @@ export default function Walkthrough() {
     };
   }, []);
 
+  // Handle Hero Video Play/Pause automatically based on viewport
   useEffect(() => {
     if (heroVideoRef.current) {
       if (isInViewport && isHeroPlaying) {
@@ -102,38 +117,34 @@ export default function Walkthrough() {
     }
   }, [isInViewport, isHeroPlaying]);
 
-  // JITTER FIX: Advanced auto-scroll logic with sub-pixel accumulation
+  // FRAME-DROP/JITTER FIX: 
+  // 1. Used a constant 1px scroll to prevent jumping/fractional pixel truncation.
+  // 2. Used an empty dependency array so the requestAnimationFrame NEVER stops and restarts on state changes.
   useEffect(() => {
     let animationFrameId;
     const container = scrollContainerRef.current;
-    
     const supportsHover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
-    let accumulatedScroll = 0; // Tracks fractional pixels perfectly without jumping
-    const scrollSpeed = 1.2; // Adjust base speed here
 
     const scroll = () => {
-      const shouldPause = playingVideoId || (supportsHover && isHovered) || isTouched || !isInViewport;
+      // Read state directly from ref, keeping loop continuous and lag-free
+      const state = scrollStateRef.current;
+      const shouldPause = state.playingVideoId || (supportsHover && state.isHovered) || state.isTouched || !state.isInViewport;
 
       if (container && !shouldPause) {
-        accumulatedScroll += scrollSpeed;
+        // Exactly 1 pixel per frame (60px/sec at 60fps) guarantees no integer rounding jumps.
+        container.scrollLeft += 1; 
         
-        // Only apply scroll when accumulated pixel is a whole number (prevents integer truncation jitter)
-        if (accumulatedScroll >= 1) {
-          const pixelsToMove = Math.floor(accumulatedScroll);
-          container.scrollLeft += pixelsToMove;
-          accumulatedScroll -= pixelsToMove;
-          
-          if (container.scrollLeft >= container.scrollWidth / 2) {
-            container.scrollLeft = 0;
-          }
+        if (container.scrollLeft >= container.scrollWidth / 2) {
+          container.scrollLeft = 0;
         }
       }
       animationFrameId = requestAnimationFrame(scroll);
     };
 
     animationFrameId = requestAnimationFrame(scroll);
+    
     return () => cancelAnimationFrame(animationFrameId);
-  }, [playingVideoId, isHovered, isTouched, isInViewport]); 
+  }, []); // <-- Empty array is the magic! Loop runs continuously without React interruptions.
 
   const toggleHeroPlayPause = () => {
     setIsHeroPlaying(!isHeroPlaying);
@@ -186,11 +197,6 @@ export default function Walkthrough() {
           
           .hide-scroll::-webkit-scrollbar { display: none; }
           .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
-
-          .mask-edges {
-            mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-          }
 
           @keyframes smoothFadeIn {
             from { opacity: 0; }
@@ -263,8 +269,9 @@ export default function Walkthrough() {
 
           <div 
             ref={scrollContainerRef}
-            /* JITTER FIX: Removed the conflicting 'scrollBehavior: smooth' inline style */
-            className={`w-full hide-scroll pt-8 pb-16 flex group ${playingVideoId ? 'overflow-x-auto [touch-action:pan-y]' : 'overflow-x-auto mask-edges'}`}
+            className={`w-full hide-scroll pt-8 pb-16 flex group overflow-x-auto ${playingVideoId ? '[touch-action:pan-y]' : ''}`}
+            // HARDWARE ACCELERATION: Force GPU rendering for the scroll container
+            style={{ scrollBehavior: 'auto', willChange: 'scroll-position', transform: 'translateZ(0)' }} 
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onTouchStart={() => setIsTouched(true)}
