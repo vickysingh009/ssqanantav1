@@ -58,6 +58,7 @@ const WhyChooseUs = () => {
         {/* Right Content */}
         <div className="wcu-right-wrapper">
           <div className="wcu-color-dots">
+            <span className="wcu-color-hint">CHOOSE COLOR</span>
             <span 
               className={`wcu-dot cream ${activeImageIndex === 0 ? 'active' : ''}`} 
               onClick={() => setActiveImageIndex(0)}

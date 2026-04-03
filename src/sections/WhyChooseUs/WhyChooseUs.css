@@ -132,13 +132,24 @@
 /* Vertical Color Dots */
 .wcu-color-dots {
   position: absolute;
-  left: -120px;
+  left: -150px; /* Shifted further left to prevent text overlapping with the image */
   top: 50%;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
+  align-items: center; /* Ensures dots and text are center aligned vertically */
   gap: 35px;
   z-index: 10;
+}
+
+.wcu-color-hint {
+  font-size: 14px; /* Increased for better visibility */
+  font-weight: 600; /* Made slightly bolder */
+  color: #4a4441; /* Darker tone so it gets noticed easily */
+  letter-spacing: 0.15em;
+  margin-bottom: -10px; /* Adjusted spacing for larger font */
+  text-align: center;
+  white-space: nowrap; /* Prevent wrapping */
 }
 
 .wcu-dot {
@@ -316,10 +327,16 @@
     order: 2; /* Forces dots to render below the image in the column */
     flex-direction: row;
     justify-content: center;
+    align-items: center;
     transform: none;
     gap: 15px;
     margin-top: 8px; /* Tighter against image */
     margin-bottom: 15px; 
+  }
+
+  .wcu-color-hint {
+    margin-bottom: 0; /* Clear desktop negative margin */
+    margin-right: 5px; /* Small gap before row dots starts */
   }
 
   .wcu-right-image {
@@ -414,8 +431,8 @@
   }
 
   .wcu-dot {
-    width: 18px; /* Noticeably smaller dots for mobile explicitly requested */
-    height: 18px;
+    width: 22px; /* Increased for better touch clicking */
+    height: 22px;
     border-width: 2px;
   }
 
