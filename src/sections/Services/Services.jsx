@@ -6,8 +6,7 @@ import imgLiving from '../../assets/images/our services/Living Room Design.webp'
 import imgBedroom from '../../assets/images/our services/Bedroom Interior.webp';
 import imgOffice from '../../assets/images/our services/Office & Commercial.webp';
 
-// Use placeholder URLs directly until the physical files are added to the folder
-const imgResidential = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop";
+import imgResidential from '../../assets/images/our services/Residential Interior Design.webp';
 const imgMap = "https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=800&auto=format&fit=crop";
 
 const Services = () => {

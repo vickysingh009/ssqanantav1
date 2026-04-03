@@ -8,6 +8,7 @@ import LazyViewportReveal from '../../components/layout/LazyViewportReveal';
 const Ticker = lazy(() => import('../../components/ui/Ticker'));
 const Services = lazy(() => import('../Services/Services'));
 const WhyChooseUs = lazy(() => import('../WhyChooseUs/WhyChooseUs'));
+const Portfolio = lazy(() => import('../Portfolio/Portfolio'));
 
 const Home = () => {
   return (
@@ -32,6 +33,12 @@ const Home = () => {
       <Suspense fallback={<div style={{ minHeight: '800px', backgroundColor: 'transparent' }}></div>}>
         <LazyViewportReveal minHeight="800px">
           <WhyChooseUs />
+        </LazyViewportReveal>
+      </Suspense>
+
+      <Suspense fallback={<div style={{ minHeight: '600px', backgroundColor: 'transparent' }}></div>}>
+        <LazyViewportReveal minHeight="600px">
+          <Portfolio />
         </LazyViewportReveal>
       </Suspense>
     </div>

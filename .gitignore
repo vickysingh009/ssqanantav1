@@ -46,3 +46,8 @@ ehthumbs.db
 # Hosting / Deployment
 .vercel/
 .netlify/
+
+# Custom Scripts & Temp files
+*.pyc
+__pycache__/
+download_portfolio_images.py
