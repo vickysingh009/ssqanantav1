@@ -1,23 +1,22 @@
 import React, { useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
-import imgResVilla from '../../assets/images/portfolio/residential/residential_2.webp';
-import imgCommLoft from '../../assets/images/portfolio/commercial/commercial_2.webp';
-import imgBed01 from '../../assets/images/portfolio/bedroom/bedroom_1.webp';
-import imgCommLobby from '../../assets/images/portfolio/commercial/commercial_1.webp';
-import imgKitchen01 from '../../assets/images/portfolio/kitchen/kitchen_1.webp';
-import imgArch01 from '../../assets/images/portfolio/architecture/architecture_1.webp';
-
-// Import Local Videos
-import video1 from '../../assets/video/video 1.mp4';
-import video2 from '../../assets/video/video 2.mp4';
-import video3 from '../../assets/video/video 3.mp4';
+import imgResVilla from '../assets/images/portfolio/residential/residential_2.webp';
+import imgCommLoft from '../assets/images/portfolio/commercial/commercial_2.webp';
+import imgBed01 from '../assets/images/portfolio/bedroom/bedroom_1.webp';
+import imgCommLobby from '../assets/images/portfolio/commercial/commercial_1.webp';
+import imgKitchen01 from '../assets/images/portfolio/kitchen/kitchen_1.webp';
+import video4 from '../assets/video/video 4.mp4';
+import video5 from '../assets/video/video 5.mp4';
+import video6 from '../assets/video/video 6.mp4';
 
 // Import New Local Thumbnails
-import thumb1 from '../../assets/video/video 1.webp';
-import thumb2 from '../../assets/video/video 2 .webp'; // Space preserved from filename
-import thumb3 from '../../assets/video/video 3.webp';
+import thumb1 from '../assets/video/video 1.webp';
+import thumb2 from '../assets/video/video 2 .webp'; // Space preserved from filename
+import thumb3 from '../assets/video/video 3.webp';
+import thumb4 from '../assets/video/video 4.webp';
+import thumb5 from '../assets/video/video 5.webp';
+import thumb6 from '../assets/video/video 6.webp';
 
-const projects = [
+const allProjects = [
   {
     id: 1,
     title: "The Glass Pavilion",
@@ -44,10 +43,37 @@ const projects = [
     thumbnail: thumb3,
     video: video3,
     desc: "Serenity meets luxury, where every detail evokes a sense of calm and elegance."
+  },
+  {
+    id: 4,
+    title: "Sky High Office",
+    duration: "1:45",
+    category: "Commercial",
+    thumbnail: thumb4,
+    video: video4,
+    desc: "Designing productivity through open spaces and natural light integration."
+  },
+  {
+    id: 5,
+    title: "The Nordic Cabin",
+    duration: "0:40",
+    category: "Residential",
+    thumbnail: thumb5,
+    video: video5,
+    desc: "Rustic charm meets modern engineering in this cozy winter getaway."
+  },
+  {
+    id: 6,
+    title: "Desert Oasis Villa",
+    duration: "2:10",
+    category: "Architecture",
+    thumbnail: thumb6,
+    video: video6,
+    desc: "Seamlessly blending indoor luxury with the vast beauty of the arid landscape."
   }
 ];
 
-// Individual Project Card Component
+// Project Card Component
 const ProjectCard = ({ project, index }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef(null);
@@ -71,7 +97,7 @@ const ProjectCard = ({ project, index }) => {
           }
         }
       },
-      { threshold: 0.5 } // Play base tab half component dikhega tab
+      { threshold: 0.5 }
     );
 
     if (containerRef.current) {
@@ -101,7 +127,6 @@ const ProjectCard = ({ project, index }) => {
       {/* Video Container */}
       <div className="relative w-full lg:w-[60%] aspect-[16/9] bg-[#EAE8E5] rounded-2xl overflow-hidden shadow-2xl border border-white/20">
 
-        {/* Video Element */}
         {hasVisited && (
           <video
             ref={videoRef}
@@ -116,7 +141,6 @@ const ProjectCard = ({ project, index }) => {
           </video>
         )}
 
-        {/* Poster Image (Hidden when playing) */}
         {!isPlaying && (
           <img
             src={project.thumbnail}
@@ -126,7 +150,6 @@ const ProjectCard = ({ project, index }) => {
         )}
 
 
-        {/* Overlay with Center Play Button (Visible when NOT playing) */}
         {!isPlaying && (
           <div className="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/20 transition-all duration-300">
             <button
@@ -138,7 +161,6 @@ const ProjectCard = ({ project, index }) => {
           </div>
         )}
 
-        {/* Duration Badge */}
         {!isPlaying && (
           <div className="absolute bottom-5 right-5 px-3 py-1 bg-black/40 backdrop-blur-sm border border-white/20 rounded-full text-[10px] text-white tracking-widest font-bold">
             {project.duration}
@@ -163,7 +185,7 @@ const ProjectCard = ({ project, index }) => {
           className="flex items-center gap-4 group/btn w-fit"
         >
           <span className="text-xs uppercase tracking-[0.2em] font-bold text-[#1A1817]">
-            {isPlaying ? 'Pause Experience' : 'Play Walkthrough'}
+            {isPlaying ? 'Pause Experience' : 'View Full Walkthrough'}
           </span>
           <div className={`h-[1px] bg-[#1A1817] transition-all duration-500 ${isPlaying ? 'w-16' : 'w-8 group-hover/btn:w-16'}`}></div>
         </button>
@@ -173,9 +195,15 @@ const ProjectCard = ({ project, index }) => {
   );
 };
 
-export default function CinematicWalkthrough() {
+import SEO from '../components/seo/SEO';
+
+export default function ProjectsPage() {
   return (
-    <section className="bg-[#F2F0ED] py-24 md:py-32 overflow-hidden font-sans">
+    <div className="min-h-screen bg-[#F2F0ED] font-sans text-[#4A4441] pb-20">
+      <SEO
+        title="Selected Works"
+        description="A collection of our most prestigious architectural and interior achievements. Step inside and explore luxury."
+      />
       <style>
         {`
 
@@ -184,40 +212,30 @@ export default function CinematicWalkthrough() {
         `}
       </style>
 
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
-
-        {/* Header Section */}
-        <div className="flex flex-col mb-20 md:mb-28">
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-12 h-[1px] bg-[#B89672]"></div>
-            <span className="text-[#B89672] text-xs uppercase tracking-[0.4em] font-bold">Cinematic Tour</span>
-          </div>
-          <h2 className="text-4xl md:text-7xl lg:text-8xl font-serif text-[#1A1817] leading-[0.95] tracking-tighter mb-8">
-            Walkthroughs <br />
-            <span className="italic font-normal text-[#B89672]/80 ml-8 md:ml-24">of Excellence.</span>
-          </h2>
-          <p className="text-[#6B635E] text-[16px] md:text-lg max-w-xl font-light leading-relaxed">
-            Experience our premium projects through a cinematic lens. Our walkthroughs bring the architecture and design details to life right where you are.
-          </p>
+      {/* Hero Header Section */}
+      <header className="pt-24 md:pt-32 pb-16 px-6 md:px-12 lg:px-24 max-w-[1400px] mx-auto border-b border-gray-200">
+        <div className="flex items-center gap-4 mb-8">
+          <div className="w-12 h-[1px] bg-[#B89672]"></div>
+          <span className="text-[#B89672] text-xs uppercase tracking-[0.4em] font-bold">Archives</span>
         </div>
+        <h1 className="text-5xl md:text-8xl font-serif text-[#1A1817] leading-[0.9] tracking-tighter mb-10">
+          Selected <br />
+          <span className="italic font-normal text-[#B89672]/80 ml-8 md:ml-24">Works.</span>
+        </h1>
+        <p className="text-[#6B635E] text-lg md:text-xl max-w-2xl font-light leading-relaxed">
+          A collection of our most prestigious architectural and interior achievements.
+          Step inside and explore the intersection of luxury and functional design.
+        </p>
+      </header>
 
-        {/* Vertical Project List */}
-        <div className="flex flex-col gap-24 md:gap-36">
-          {projects.map((project, index) => (
+      {/* Projects List Section */}
+      <section className="py-24 px-6 md:px-12 lg:px-24 max-w-[1400px] mx-auto">
+        <div className="flex flex-col gap-24 md:gap-40">
+          {allProjects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>
-
-        {/* Bottom CTA */}
-        <div className="mt-32 md:mt-44 text-center">
-          <Link to="/projects">
-            <button className="px-10 py-4 md:px-12 md:py-5 bg-[#1A1817] text-white text-xs md:text-sm uppercase tracking-widest font-medium rounded-full hover:bg-[#B89672] transition-all duration-500 shadow-xl inline-flex">
-              View All Projects
-            </button>
-          </Link>
-        </div>
-
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }

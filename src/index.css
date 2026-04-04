@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600&display=swap');
+
 @import "tailwindcss";
 
 @layer utilities {
@@ -15,6 +15,7 @@ body, html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #f3f4f6;
+  scroll-behavior: smooth;
 }
 
 h1, h2, h3, h4, h5, h6 {

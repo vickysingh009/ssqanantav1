@@ -35,13 +35,12 @@
   z-index: 1;
 }
 
-/* Navbar */
 .navbar {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 10;
+  z-index: 50;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -50,36 +49,71 @@
   border-bottom: none;
 }
 
+.navbar-global {
+  position: sticky !important;
+  background-color: #1A1A1A !important;
+  padding: 14px 80px !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15) !important;
+}
+
 .logo img {
   height: 60px;
   width: auto;
   object-fit: contain;
 }
 
+/* Shrink logo on sticky global navbar */
+.navbar-global .logo img {
+  height: 48px;
+}
+
 .nav-links {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   gap: 40px;
 }
 
 .nav-links a {
-  font-size: 15px;
-  font-weight: 300;
-  letter-spacing: 0.5px;
-  color: rgba(255, 255, 255, 0.85);
-  transition: color 0.3s ease;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45); /* Muted unselected state */
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 8px 0; /* Add top padding to balance vertical optical center */
+  text-decoration: none;
+  display: inline-block;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 1.5px;
+  background-color: #ebd5c1;
+  transition: width 0.3s ease-out;
 }
 
 .nav-links a:hover {
-  color: #fff;
+  color: #ffffff;
+}
+
+.nav-links a.active {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
 }
 
 /* Buttons */
-.nav-action .btn-light {
-  padding: 12px 28px;
-  font-size: 15px;
-  border-radius: 6px;
-}
-
 .btn-light {
   background-color: #ebd5c1;
   color: #2b1f16;
@@ -96,6 +130,30 @@
   background-color: #f6e3d2;
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(235, 213, 193, 0.3);
+}
+
+/* Custom Consult Button */
+.btn-consult {
+  background-color: transparent;
+  color: #ebd5c1;
+  border: 1px solid rgba(235, 213, 193, 0.5); /* Thinner/lighter premium border */
+  padding: 10px 24px; /* Reduced padding for smaller delicate look */
+  font-size: 11.5px; /* Smaller elegant font */
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  font-weight: 400; /* Lighter weight */
+  border-radius: 4px;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-consult:hover {
+  background-color: rgba(235, 213, 193, 0.1); /* Subtle hover fill instead of solid */
+  border-color: #ebd5c1;
+  transform: translateY(-1px);
 }
 
 .btn-dark {
@@ -233,8 +291,14 @@
     background: transparent;
     border-bottom: none;
   }
+  .navbar-global {
+    padding: 12px 24px !important;
+  }
   .logo img {
     height: 48px;
+  }
+  .navbar-global .logo img {
+    height: 38px !important;
   }
   .nav-links, .nav-action {
     display: none;

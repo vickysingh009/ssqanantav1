@@ -1,5 +1,4 @@
 import React, { Suspense, lazy } from 'react';
-import Navbar from '../../components/layout/Navbar';
 import HeroSection from './HeroSection';
 import LazyViewportReveal from '../../components/layout/LazyViewportReveal';
 
@@ -10,43 +9,43 @@ const Services = lazy(() => import('../Services/Services'));
 const WhyChooseUs = lazy(() => import('../WhyChooseUs/WhyChooseUs'));
 const Portfolio = lazy(() => import('../Portfolio/Portfolio'));
 const Walkthrough = lazy(() => import('../Walkthrough/Walkthrough'));
+const ContactUs = lazy(() => import('../ContactUs/ContactUs'));
+
+import SEO from '../../components/seo/SEO';
 
 const Home = () => {
   return (
     <div className="home-container">
-      <Navbar />
+      <SEO 
+        title="Home" 
+        description="Welcome to S-SQAnata Interior Design. Experience bespoke architectural spaces tailored to your lifestyle." 
+      />
       {/* Top of the fold components load immediately */}
       <HeroSection />
       
-      {/* Each lazy component gets its own Suspense boundary to prevent scroll collapses when chunk-fetching */}
-      <Suspense fallback={<div style={{ minHeight: '150px', backgroundColor: 'transparent' }}></div>}>
-        <LazyViewportReveal minHeight="150px">
-          <Ticker />
-        </LazyViewportReveal>
-      </Suspense>
-      
-      <Suspense fallback={<div style={{ minHeight: '600px', backgroundColor: 'transparent' }}></div>}>
-        <LazyViewportReveal minHeight="600px">
+      {/* 
+        Below-the-fold components are loaded via React.lazy() to keep initial payload small. 
+        We use a single Suspense boundary so they render as soon as fetched, ensuring 
+        anchor links (like #contact) can reliably scroll to the correct DOM heights without layout-shifts. 
+      */}
+      <Suspense fallback={
+        <div className="min-h-screen w-full flex justify-center items-center bg-[#F8F9FA]">
+          <div className="flex flex-col items-center gap-4">
+            <div className="w-8 h-8 md:w-10 md:h-10 border-2 border-[#B89672]/30 border-t-[#B89672] rounded-full animate-spin"></div>
+            <span className="text-[#8B7355] text-xs font-semibold uppercase tracking-widest animate-pulse">Loading Room...</span>
+          </div>
+        </div>
+      }>
+        <Ticker />
+        <div id="services">
           <Services />
-        </LazyViewportReveal>
-      </Suspense>
-      
-      <Suspense fallback={<div style={{ minHeight: '800px', backgroundColor: 'transparent' }}></div>}>
-        <LazyViewportReveal minHeight="800px">
-          <WhyChooseUs />
-        </LazyViewportReveal>
-      </Suspense>
-
-      <Suspense fallback={<div style={{ minHeight: '600px', backgroundColor: 'transparent' }}></div>}>
-        <LazyViewportReveal minHeight="600px">
-          <Portfolio />
-        </LazyViewportReveal>
-      </Suspense>
-
-      <Suspense fallback={<div style={{ minHeight: '800px', backgroundColor: 'transparent' }}></div>}>
-        <LazyViewportReveal minHeight="800px">
-          <Walkthrough />
-        </LazyViewportReveal>
+        </div>
+        <WhyChooseUs />
+        <Portfolio />
+        <Walkthrough />
+        <div id="contact">
+          <ContactUs />
+        </div>
       </Suspense>
     </div>
   );
