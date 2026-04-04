@@ -4,6 +4,10 @@ import imgCommLoft from '../assets/images/portfolio/commercial/commercial_2.webp
 import imgBed01 from '../assets/images/portfolio/bedroom/bedroom_1.webp';
 import imgCommLobby from '../assets/images/portfolio/commercial/commercial_1.webp';
 import imgKitchen01 from '../assets/images/portfolio/kitchen/kitchen_1.webp';
+// Import Local Videos
+import video1 from '../assets/video/video 1.mp4';
+import video2 from '../assets/video/video 2.mp4';
+import video3 from '../assets/video/video 3.mp4';
 import video4 from '../assets/video/video 4.mp4';
 import video5 from '../assets/video/video 5.mp4';
 import video6 from '../assets/video/video 6.mp4';

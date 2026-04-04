@@ -408,7 +408,11 @@ export default function PortfolioGrid() {
     return () => observer.disconnect();
   }, [filteredProjects.length, displayLimit]);
 
-  const visibleProjects = filteredProjects.slice(0, displayLimit);
+  // For specific categories, we use the display limit for infinite scroll.
+  // For "All", we show cat headers, so we should ensure we show enough from each.
+  const visibleProjects = activeCategory === 'All' 
+    ? filteredProjects 
+    : filteredProjects.slice(0, displayLimit);
 
   return (
     <div className="min-h-screen bg-[#F8F9FA] font-sans text-[#4A4441] pb-24 relative">
@@ -488,8 +492,10 @@ export default function PortfolioGrid() {
               activeCategory === 'All' ? (
                 <div className="flex flex-col gap-12 md:gap-20">
                   {categories.filter(c => c !== 'All').map(category => {
-                    const catProjects = visibleProjects.filter(p => p.category === category);
+                    const catProjects = portfolioData.filter(p => p.category === category);
                     if (catProjects.length === 0) return null;
+                    
+                    // Show a reasonable preview of each category in "All" view
                     return (
                       <div key={category} className="flex flex-col">
                         <div className="flex items-center gap-4 mb-6 md:mb-8">
@@ -497,10 +503,18 @@ export default function PortfolioGrid() {
                            <div className="flex-grow h-[1px] bg-gray-200"></div>
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
-                          {catProjects.map((project) => (
+                          {catProjects.slice(0, 6).map((project) => (
                             <ProjectCard key={project.id} project={project} />
                           ))}
                         </div>
+                        {catProjects.length > 6 && (
+                          <button 
+                            onClick={() => handleTabClick(category)}
+                            className="mt-6 text-[#B89672] text-sm font-medium hover:underline self-start"
+                          >
+                            View all {category} designs +
+                          </button>
+                        )}
                       </div>
                     );
                   })}
