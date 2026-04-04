@@ -1,7 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '../../components/ui/Button';
 
 const HeroContent = () => {
+  const navigate = useNavigate();
   return (
     <div className="hero-content">
       <p className="subtitle">Designing Spaces That Reflect You</p>
@@ -19,7 +21,7 @@ const HeroContent = () => {
       </p>
       
       <div className="button-group">
-        <Button variant="dark">View Portfolio</Button>
+        <Button variant="dark" onClick={() => navigate('/portfolio')}>View Portfolio</Button>
         <Button variant="light">Book Now</Button>
       </div>
     </div>

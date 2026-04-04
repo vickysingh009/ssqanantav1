@@ -1,4 +1,5 @@
 import React, { useState, useMemo, memo } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import img1 from '../../assets/images/portfolio/residential/residential_2.webp';
 import img2 from '../../assets/images/portfolio/commercial/commercial_2.webp';
@@ -97,6 +98,7 @@ const ProjectCard = memo(({ title, category, image, className, isVerticalText })
 ));
 
 export default function Portfolio() {
+  const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState('All');
   const [displayCategory, setDisplayCategory] = useState('All');
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -240,7 +242,7 @@ export default function Portfolio() {
 
           {/* CTA Button */}
           <div className="mt-10 md:mt-12 flex justify-center">
-            <button className="bg-[#2D2825] text-white px-8 py-3.5 rounded-full text-sm font-medium tracking-wide hover:bg-[#403935] transition-colors duration-300 flex items-center gap-3">
+            <button onClick={() => navigate('/portfolio')} className="bg-[#2D2825] text-white px-8 py-3.5 rounded-full text-sm font-medium tracking-wide hover:bg-[#403935] transition-colors duration-300 flex items-center gap-3">
               View Complete Portfolio
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
