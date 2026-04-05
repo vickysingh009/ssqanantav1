@@ -24,7 +24,7 @@ const ContactForm = () => {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: "9373fc8f-c027-4345-8e4d-32d2f04f668c",
+          access_key: "b5d964f1-36d8-4587-ae2a-7be8891082b7",
           subject: "✨ New Lead from ContactForm - S² Ananta",
           ...formData
         }),
@@ -57,7 +57,7 @@ const ContactForm = () => {
         <p className="text-gray-500 text-sm md:text-[15px] max-w-md mx-auto leading-relaxed">
           Thank you for reaching out! Our lead design team will review your requirements and contact you shortly.
         </p>
-        <button 
+        <button
           onClick={() => setIsSubmitted(false)}
           className="mt-8 text-[#B89672] text-[13px] uppercase tracking-widest font-medium hover:text-[#9a7b5c] transition-colors"
         >
@@ -68,16 +68,16 @@ const ContactForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-6 md:gap-8">
+    <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-6 md:gap-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
         {/* Name Input */}
         <div className="relative group">
-          <input 
-            type="text" 
+          <input
+            type="text"
             name="name"
             value={formData.name}
             onChange={handleChange}
-            placeholder="Full Name *" 
+            placeholder="Full Name *"
             required
             className="w-full bg-transparent border-b border-gray-300 py-2.5 md:py-3 text-[13px] md:text-sm text-[#1A1A1A] focus:outline-none focus:border-[#B89672] transition-colors placeholder:text-gray-400"
           />
@@ -85,12 +85,12 @@ const ContactForm = () => {
 
         {/* Phone Input */}
         <div className="relative group">
-          <input 
-            type="tel" 
+          <input
+            type="tel"
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            placeholder="Phone Number *" 
+            placeholder="Phone Number *"
             required
             className="w-full bg-transparent border-b border-gray-300 py-2.5 md:py-3 text-[13px] md:text-sm text-[#1A1A1A] focus:outline-none focus:border-[#B89672] transition-colors placeholder:text-gray-400"
           />
@@ -100,19 +100,19 @@ const ContactForm = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
         {/* Email Input */}
         <div className="relative group">
-          <input 
-            type="email" 
+          <input
+            type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
-            placeholder="Email Address" 
+            placeholder="Email Address"
             className="w-full bg-transparent border-b border-gray-300 py-2.5 md:py-3 text-[13px] md:text-sm text-[#1A1A1A] focus:outline-none focus:border-[#B89672] transition-colors placeholder:text-gray-400"
           />
         </div>
 
         {/* Service Dropdown */}
         <div className="relative group">
-          <select 
+          <select
             name="service"
             value={formData.service}
             onChange={handleChange}
@@ -137,11 +137,11 @@ const ContactForm = () => {
 
       {/* Message Textarea */}
       <div className="relative group">
-        <textarea 
+        <textarea
           name="message"
           value={formData.message}
           onChange={handleChange}
-          placeholder="Tell us about your project or requirements..." 
+          placeholder="Tell us about your project or requirements..."
           rows="2"
           className="w-full bg-transparent border-b border-gray-300 py-2.5 md:py-3 text-[13px] md:text-sm text-[#1A1A1A] focus:outline-none focus:border-[#B89672] transition-colors placeholder:text-gray-400 resize-none h-14"
         ></textarea>
@@ -149,7 +149,7 @@ const ContactForm = () => {
 
       {/* Submit Button */}
       <div className="mt-4 flex justify-start sm:justify-end">
-        <button 
+        <button
           type="submit"
           className="bg-[#B89672] hover:bg-[#9a7b5c] text-white px-8 py-3 md:py-3.5 rounded text-[13px] md:text-sm font-medium transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 group w-full sm:w-auto"
         >

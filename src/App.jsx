@@ -38,9 +38,13 @@ function DetailPageWrapper() {
   const navigate = useNavigate();
   const project = location.state?.project || null;
 
+  React.useEffect(() => {
+    if (!project) {
+      navigate('/portfolio');
+    }
+  }, [project, navigate]);
+
   if (!project) {
-    // If no project data (e.g. direct URL access), redirect back to portfolio
-    React.useEffect(() => { navigate('/portfolio'); }, []);
     return null;
   }
 

@@ -57,11 +57,11 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <h4 className="text-lg font-serif text-white mb-6">Quick Links</h4>
             <ul className="flex flex-col gap-4 font-light text-sm text-[#FAF3EB]/70">
-              <li><a href="#" className="hover:text-[#F5E9DC] hover:translate-x-1 inline-block transition-all">Home</a></li>
-              <li><a href="#" className="hover:text-[#F5E9DC] hover:translate-x-1 inline-block transition-all">Services</a></li>
-              <li><a href="#" className="hover:text-[#F5E9DC] hover:translate-x-1 inline-block transition-all">Portfolio</a></li>
-              <li><a href="#" className="hover:text-[#F5E9DC] hover:translate-x-1 inline-block transition-all">About</a></li>
-              <li><a href="#" className="hover:text-[#F5E9DC] hover:translate-x-1 inline-block transition-all">Contact</a></li>
+              <li><Link to="/" className="hover:text-[#F5E9DC] hover:translate-x-1 inline-block transition-all">Home</Link></li>
+              <li><Link to="/services" className="hover:text-[#F5E9DC] hover:translate-x-1 inline-block transition-all">Services</Link></li>
+              <li><Link to="/portfolio" className="hover:text-[#F5E9DC] hover:translate-x-1 inline-block transition-all">Portfolio</Link></li>
+              <li><Link to="/about" className="hover:text-[#F5E9DC] hover:translate-x-1 inline-block transition-all">About</Link></li>
+              <li><Link to="/contact" className="hover:text-[#F5E9DC] hover:translate-x-1 inline-block transition-all">Contact</Link></li>
             </ul>
           </div>
 

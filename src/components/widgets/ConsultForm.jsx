@@ -36,7 +36,7 @@ export default function ConsultForm() {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: "9373fc8f-c027-4345-8e4d-32d2f04f668c",
+          access_key: "b5d964f1-36d8-4587-ae2a-7be8891082b7",
           subject: "✨ New Lead from ConsultForm - S² Ananta",
           ...formData
         }),
@@ -78,9 +78,9 @@ export default function ConsultForm() {
 
       {/* Modal Container - Ultra sleek rounded corners */}
       <div className="w-full max-w-[1000px] h-[90vh] md:h-auto overflow-y-auto md:overflow-visible bg-white rounded-2xl md:rounded-[2rem] shadow-[0_20px_60px_rgba(0,0,0,0.3)] flex flex-col md:flex-row relative animate-modal">
-        
+
         {/* Floating Close Button */}
-        <button 
+        <button
           onClick={() => setIsOpen(false)}
           className="absolute top-5 right-5 md:top-8 md:right-8 w-10 h-10 bg-white hover:bg-[#F5E9DC] shadow-md rounded-full flex items-center justify-center text-[#2B2B2B] transition-all duration-300 z-50 group border border-[#F5E9DC]/50"
         >
@@ -91,9 +91,9 @@ export default function ConsultForm() {
         <div className="hidden md:flex w-[45%] relative bg-[#4E342E] flex-col justify-between overflow-hidden p-10 h-full min-h-[600px]">
           <picture>
             <source srcSet={imgConsultWebP} type="image/webp" />
-            <img 
-              src={imgConsult} 
-              alt="Luxury Interior" 
+            <img
+              src={imgConsult}
+              alt="Luxury Interior"
               loading="lazy"
               decoding="async"
               width="600"
@@ -102,7 +102,7 @@ export default function ConsultForm() {
             />
           </picture>
           <div className="absolute inset-0 bg-gradient-to-b from-[#4E342E]/80 via-transparent to-[#4E342E]/90 z-0"></div>
-          
+
           {/* Top Logo Area */}
           <div className="relative z-10 flex flex-col">
             <span className="text-[#F5E9DC] font-serif text-3xl tracking-wide">
@@ -128,7 +128,7 @@ export default function ConsultForm() {
 
         {/* RIGHT SIDE: Minimalist Form */}
         <div className="w-full md:w-[55%] p-8 sm:p-10 md:p-14 relative bg-white flex flex-col justify-center">
-          
+
           {!isSubmitted ? (
             <div className="w-full max-w-md mx-auto">
               <div className="mb-10">
@@ -136,16 +136,16 @@ export default function ConsultForm() {
                   Book A Free Consultation
                 </span>
                 <h2 className="text-3xl md:text-[40px] font-serif text-[#2B2B2B] leading-tight">
-                  Design Your <br/>Dream Space.
+                  Design Your <br />Dream Space.
                 </h2>
               </div>
 
               <form onSubmit={handleSubmit} className="flex flex-col gap-8">
-                
+
                 {/* Floating Label Input - Name */}
                 <div className="relative group">
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     name="name"
                     id="name"
                     value={formData.name}
@@ -162,8 +162,8 @@ export default function ConsultForm() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                   {/* Floating Label Input - Phone */}
                   <div className="relative group">
-                    <input 
-                      type="tel" 
+                    <input
+                      type="tel"
                       name="phone"
                       id="phone"
                       value={formData.phone}
@@ -179,8 +179,8 @@ export default function ConsultForm() {
 
                   {/* Floating Label Input - Email */}
                   <div className="relative group">
-                    <input 
-                      type="email" 
+                    <input
+                      type="email"
                       name="email"
                       id="email"
                       value={formData.email}
@@ -196,7 +196,7 @@ export default function ConsultForm() {
 
                 {/* Custom Styled Select */}
                 <div className="relative group mt-2">
-                  <select 
+                  <select
                     name="service"
                     value={formData.service}
                     onChange={handleChange}
@@ -218,7 +218,7 @@ export default function ConsultForm() {
 
                 {/* Floating Label Textarea - Message */}
                 <div className="relative group mt-2">
-                  <textarea 
+                  <textarea
                     name="message"
                     id="message"
                     value={formData.message}
@@ -233,7 +233,7 @@ export default function ConsultForm() {
                 </div>
 
                 {/* Premium Submit Button */}
-                <button 
+                <button
                   type="submit"
                   className="mt-6 w-full bg-[#4E342E] hover:bg-[#3d2924] text-[#F5E9DC] py-4 rounded-md text-[13px] uppercase tracking-[0.2em] font-medium transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-3 group"
                 >
@@ -255,7 +255,7 @@ export default function ConsultForm() {
               <p className="text-[#6B635E] text-[15px] font-light max-w-sm mx-auto mb-10 leading-relaxed">
                 Thank you, {formData.name || 'Guest'}. Our lead design team will review your request and contact you at {formData.phone} shortly.
               </p>
-              <button 
+              <button
                 onClick={() => setIsOpen(false)}
                 className="border border-[#4E342E] text-[#4E342E] hover:bg-[#4E342E] hover:text-[#F5E9DC] px-10 py-3.5 rounded-sm text-[11px] uppercase tracking-[0.2em] font-medium transition-all duration-300"
               >
@@ -263,7 +263,7 @@ export default function ConsultForm() {
               </button>
             </div>
           )}
-          
+
         </div>
       </div>
     </div>

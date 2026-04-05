@@ -134,7 +134,7 @@ export default function PortfolioGrid() {
           <div className="flex items-center flex-wrap gap-1 md:gap-2 text-[11px] md:text-sm text-gray-500 mb-6 md:mb-8">
             <Link to="/" className="hover:text-[#B89672] transition-colors">Home</Link>
             <svg className="w-2.5 h-2.5 md:w-3 md:h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-            <a href="#" className="hover:text-[#B89672] transition-colors">Interior Design</a>
+            <span className="text-gray-500">Interior Design</span>
             {activeCategory !== 'All' && (
               <>
                 <svg className="w-2.5 h-2.5 md:w-3 md:h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>

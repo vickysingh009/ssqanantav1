@@ -14,8 +14,11 @@ const SEO = ({
       {/* Basic HTML Meta Tags */}
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
+      <link rel="canonical" href={window.location.href} />
       
       {/* Open Graph Meta Tags for Social Media & iMessage Previews */}
+      <meta property="og:image" content="https://ssqananta.com/og-image.jpg" />
+      <meta property="og:url" content={window.location.href} />
       <meta property="og:type" content={type} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />

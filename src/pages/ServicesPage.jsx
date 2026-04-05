@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const servicesList = [
   {
@@ -121,6 +122,8 @@ export default function ServicesPage() {
                     <img 
                       src={service.image} 
                       alt={service.title} 
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-700 pointer-events-none"></div>
@@ -156,12 +159,12 @@ export default function ServicesPage() {
 
                   {/* Discover More Link */}
                   <div className="mt-auto">
-                    <button className="flex items-center gap-3 text-[#1C1A19] font-medium text-xs md:text-sm uppercase tracking-[0.2em] group/btn">
+                    <Link to="/portfolio" className="inline-flex items-center gap-3 text-[#1C1A19] font-medium text-xs md:text-sm uppercase tracking-[0.2em] group/btn">
                       Explore Portfolio
                       <div className="w-8 h-[1px] bg-[#1C1A19] group-hover/btn:w-12 transition-all duration-300 relative">
                         <span className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 border-t border-r border-[#1C1A19] rotate-45 transform translate-x-[1px]"></span>
                       </div>
-                    </button>
+                    </Link>
                   </div>
                 </div>
 

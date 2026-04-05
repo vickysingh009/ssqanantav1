@@ -232,7 +232,7 @@ const Navbar = ({ isHome }) => {
               <a href="tel:+917878538299" className="text-[12px] font-light tracking-wide" style={{ color: '#FFFFFF' }}>+91 78785 38299</a>
             </div>
             <div className="flex gap-4">
-              <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-[#D4B38C] text-[10px] uppercase tracking-widest transition-colors" style={{ color: '#FFFFFF' }}>IG</a>
+              <a href="https://www.instagram.com/s_sq_ananta_design?igsh=MXMzaGoxam5odnZtdQ==" target="_blank" rel="noreferrer" className="hover:text-[#D4B38C] text-[10px] uppercase tracking-widest transition-colors" style={{ color: '#FFFFFF' }}>IG</a>
               <a href="https://facebook.com" target="_blank" rel="noreferrer" className="hover:text-[#D4B38C] text-[10px] uppercase tracking-widest transition-colors" style={{ color: '#FFFFFF' }}>FB</a>
             </div>
           </div>
