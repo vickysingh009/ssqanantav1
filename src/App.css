@@ -26,13 +26,12 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(20, 15, 12, 0.7) 0%,
-    rgba(20, 15, 12, 0.4) 40%,
-    rgba(20, 15, 12, 0.6) 100%
-  );
+  background: linear-gradient(to bottom,
+      rgba(20, 15, 12, 0.7) 0%,
+      rgba(20, 15, 12, 0.4) 40%,
+      rgba(20, 15, 12, 0.6) 100%);
   z-index: 1;
+  pointer-events: none;
 }
 
 .navbar {
@@ -51,9 +50,12 @@
 
 .navbar-global {
   position: sticky !important;
-  background-color: #1A1A1A !important;
-  padding: 14px 80px !important;
+  background-color: #2D2A28 !important;
+  /* Slightly lighter, warm dark tone */
+  padding: 10px 80px !important;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15) !important;
+  height: 64px !important;
+  box-sizing: border-box;
 }
 
 .logo img {
@@ -80,10 +82,12 @@
   font-weight: 600;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45); /* Muted unselected state */
+  color: rgba(255, 255, 255, 0.45);
+  /* Muted unselected state */
   transition: all 0.3s ease;
   position: relative;
-  padding: 8px 0; /* Add top padding to balance vertical optical center */
+  padding: 8px 0;
+  /* Add top padding to balance vertical optical center */
   text-decoration: none;
   display: inline-block;
 }
@@ -124,6 +128,7 @@
   border-radius: 8px;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(235, 213, 193, 0.2);
+  cursor: pointer;
 }
 
 .btn-light:hover {
@@ -136,12 +141,16 @@
 .btn-consult {
   background-color: transparent;
   color: #ebd5c1;
-  border: 1px solid rgba(235, 213, 193, 0.5); /* Thinner/lighter premium border */
-  padding: 10px 24px; /* Reduced padding for smaller delicate look */
-  font-size: 11.5px; /* Smaller elegant font */
+  border: 1px solid rgba(235, 213, 193, 0.5);
+  /* Thinner/lighter premium border */
+  padding: 10px 24px;
+  /* Reduced padding for smaller delicate look */
+  font-size: 11.5px;
+  /* Smaller elegant font */
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  font-weight: 400; /* Lighter weight */
+  font-weight: 400;
+  /* Lighter weight */
   border-radius: 4px;
   transition: all 0.4s ease;
   cursor: pointer;
@@ -151,7 +160,8 @@
 }
 
 .btn-consult:hover {
-  background-color: rgba(235, 213, 193, 0.1); /* Subtle hover fill instead of solid */
+  background-color: rgba(235, 213, 193, 0.1);
+  /* Subtle hover fill instead of solid */
   border-color: #ebd5c1;
   transform: translateY(-1px);
 }
@@ -168,6 +178,7 @@
   border-radius: 8px;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 }
 
 .btn-dark:hover {
@@ -179,7 +190,7 @@
 /* Hero Content */
 .hero-content {
   position: relative;
-  z-index: 10;
+  z-index: 30;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -226,6 +237,7 @@
 .mobile-text {
   display: none;
 }
+
 .desktop-text {
   display: block;
 }
@@ -244,6 +256,7 @@
   .title {
     font-size: 56px;
   }
+
   .navbar {
     padding: 20px 40px;
   }
@@ -252,35 +265,43 @@
 @media (max-width: 768px) {
   .home-container {
     width: 100vw;
-    min-height: 100vh;
+    min-height: 100dvh;
     margin: 0;
     border-radius: 0;
     box-shadow: none;
   }
-  
+
   .hero-content {
     justify-content: center;
-    padding-top: 30px; /* Reduced to gracefully lift the entire block */
-    padding-bottom: 20px; /* Lifts the center of gravity */
+    padding-top: 30px;
+    /* Reduced to gracefully lift the entire block */
+    padding-bottom: 20px;
+    /* Lifts the center of gravity */
   }
 
   .title {
-    font-size: 34px; /* Reduced to ensure "Thoughtfully Designed" fits on one line */
+    font-size: 34px;
+    /* Reduced to ensure "Thoughtfully Designed" fits on one line */
     line-height: 1.2;
   }
+
   .subtitle {
-    font-size: 13px; /* Softer, slightly smaller subtitle */
+    font-size: 13px;
+    /* Softer, slightly smaller subtitle */
     letter-spacing: 0.5px;
     margin-bottom: 12px;
   }
+
   .description {
     font-size: 15px;
-    margin-bottom: 86px; /* Greatly expanded to ensure buttons remain correctly pressed down */
+    margin-bottom: 30px;
     line-height: 1.6;
   }
+
   .desktop-text {
     display: none;
   }
+
   .mobile-text {
     display: block;
   }
@@ -291,34 +312,46 @@
     background: transparent;
     border-bottom: none;
   }
+
   .navbar-global {
     padding: 12px 24px !important;
+    height: 62px !important;
   }
+
   .logo img {
     height: 48px;
   }
+
   .navbar-global .logo img {
     height: 38px !important;
   }
-  .nav-links, .nav-action {
+
+  .nav-links,
+  .nav-action {
     display: none;
   }
+
   .hamburger-menu {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 28px; /* Compact width */
-    height: 18px; /* Tight proportion matching the gap */
+    width: 28px;
+    /* Compact width */
+    height: 18px;
+    /* Tight proportion matching the gap */
     background: transparent;
     border: none;
     cursor: pointer;
     padding: 0;
   }
+
   .hamburger-menu span {
     width: 100%;
-    height: 3.5px; /* Thicker bold lines */
+    height: 3.5px;
+    /* Thicker bold lines */
     background-color: #ebd5c1;
-    border-radius: 4px; /* Fully pill-rounded ends */
+    border-radius: 4px;
+    /* Fully pill-rounded ends */
   }
 
   /* Buttons */
@@ -327,24 +360,70 @@
     width: 100%;
     align-items: center;
     gap: 16px;
-    margin-top: 0; /* Remove auto stretching */
+    margin-top: 0;
+    /* Remove auto stretching */
   }
+
   .button-group button {
     width: 100%;
-    max-width: 300px; /* Slightly narrower matching pill style */
+    max-width: 300px;
     padding: 18px 0;
     margin: 0 auto;
     font-size: 18px;
     font-weight: 300;
     border-radius: 12px;
+    position: relative;
+    z-index: 50;
+    pointer-events: auto !important;
   }
 
   .btn-dark {
-    border: none; /* Removed white hairline border to match soft design */
+    border: none;
+    /* Removed white hairline border to match soft design */
   }
 
   /* Dynamic image */
   .hero-container {
     background-image: var(--bg-mobile) !important;
   }
+}
+
+/* Mobile Menu Overlay Utilities */
+.menu-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.menu-open .menu-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delay-1 {
+  transition-delay: 0.1s;
+}
+
+.delay-2 {
+  transition-delay: 0.15s;
+}
+
+.delay-3 {
+  transition-delay: 0.2s;
+}
+
+.delay-4 {
+  transition-delay: 0.25s;
+}
+
+.delay-5 {
+  transition-delay: 0.3s;
+}
+
+.delay-6 {
+  transition-delay: 0.4s;
+}
+
+.delay-7 {
+  transition-delay: 0.5s;
 }

@@ -31,7 +31,7 @@ const Services = () => {
 
       {/* Grid Section */}
       <div className="services-grid">
-        
+
         {/* Mobile Swipe Hint (Hidden on Desktop) */}
         <div className="mobile-swipe-hint">
           <span>Swipe</span>
@@ -53,14 +53,14 @@ const Services = () => {
           </div>
 
           <div className="service-card card-half-right-top">
-            <img src={imgResidential} alt="Residential Interior Design" className="service-img" loading="lazy" 
-                 onError={(e) => { e.target.src = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop"; }} />
+            <img src={imgResidential} alt="Residential Interior Design" className="service-img" loading="lazy"
+              onError={(e) => { e.target.src = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop"; }} />
             <div className="service-overlay">
               <h3 className="service-name">Residential Interior Design</h3>
               <p className="service-tagline">Creating comfortable and stylish homes tailored to your lifestyle</p>
             </div>
           </div>
-          
+
           <div className="service-card card-quarter-1">
             <img src={imgOffice} alt="Office & Commercial" className="service-img" loading="lazy" />
             <div className="service-overlay">
@@ -95,8 +95,8 @@ const Services = () => {
                     </div>
                   </div>
                   <div className="service-card mobile-only-slide">
-                    <img src={imgResidential} alt="Residential Interior Design" className="service-img" loading="lazy" 
-                        onError={(e) => { e.target.src = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop"; }} />
+                    <img src={imgResidential} alt="Residential Interior Design" className="service-img" loading="lazy"
+                      onError={(e) => { e.target.src = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop"; }} />
                     <div className="service-overlay">
                       <h3 className="service-name">Residential Interior Design</h3>
                     </div>
@@ -132,11 +132,11 @@ const Services = () => {
           </div>
 
           <div className="service-card card-quarter-2">
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3579.6955691457447!2d73.03348897541532!3d26.20657967707512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjbCsDEyJzIzLjciTiA3M8KwMDInMDkuOCJF!5e0!3m2!1sen!2sin!4v1775128186745!5m2!1sen!2sin" 
-              style={{ border: 0, width: "100%", height: "100%" }} 
-              allowFullScreen="" 
-              loading="lazy" 
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3579.6955691457447!2d73.03348897541532!3d26.20657967707512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjbCsDEyJzIzLjciTiA3M8KwMDInMDkuOCJF!5e0!3m2!1sen!2sin!4v1775128186745!5m2!1sen!2sin"
+              style={{ border: 0, width: "100%", height: "100%" }}
+              allowFullScreen=""
+              loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               className="service-img"
             ></iframe>

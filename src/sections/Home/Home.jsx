@@ -16,13 +16,13 @@ import SEO from '../../components/seo/SEO';
 const Home = () => {
   return (
     <div className="home-container">
-      <SEO 
-        title="Home" 
-        description="Welcome to S-SQAnata Interior Design. Experience bespoke architectural spaces tailored to your lifestyle." 
+      <SEO
+        title="Home"
+        description="Welcome to S-SQAnata Interior Design. Experience bespoke architectural spaces tailored to your lifestyle."
       />
       {/* Top of the fold components load immediately */}
       <HeroSection />
-      
+
       {/* 
         Below-the-fold components are loaded via React.lazy() to keep initial payload small. 
         We use a single Suspense boundary so they render as soon as fetched, ensuring 

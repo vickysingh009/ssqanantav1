@@ -105,13 +105,13 @@ export default function Portfolio() {
 
   const handleTabChange = (category) => {
     if (category === activeCategory || isTransitioning) return;
-    
+
     setIsTransitioning(true);
     setActiveCategory(category);
-    
+
     // Immediately swap the display category so there's no layout height snap
     setDisplayCategory(category);
-    
+
     // Trigger fade-in smoothly
     setTimeout(() => {
       setIsTransitioning(false);
@@ -119,7 +119,7 @@ export default function Portfolio() {
   };
 
   const filteredProjects = useMemo(() => {
-    return projects.filter(project => 
+    return projects.filter(project =>
       displayCategory === 'All' || project.category === displayCategory
     );
   }, [displayCategory]);
@@ -181,7 +181,7 @@ export default function Portfolio() {
 
       {/* PORTFOLIO SECTION */}
       <section className="py-12 md:py-16 lg:py-20 px-[10px] md:px-[60px] relative overflow-hidden">
-        
+
         {/* Subtle Background Decorative Lines (Matched to Why Choose Us gold tint) */}
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
           <div className="absolute -top-[20%] -right-[10%] w-[800px] h-[800px] rounded-full border-[1px] border-[#A67C52]/10"></div>
@@ -189,7 +189,7 @@ export default function Portfolio() {
         </div>
 
         <div className="max-w-[1660px] w-full mx-auto relative z-10">
-          
+
           {/* Section Header */}
           <div className="flex flex-col items-center text-center mb-8 md:mb-10 gap-4 md:gap-5 max-w-3xl mx-auto">
             <div className="w-full">
@@ -204,7 +204,7 @@ export default function Portfolio() {
                 Our Featured Works
               </h2>
               <p className="text-[#6B635E] text-sm md:text-base leading-relaxed font-light">
-                Explore a curated selection of our most recent projects. We blend 
+                Explore a curated selection of our most recent projects. We blend
                 creativity, functionality, and precision.
               </p>
             </div>
@@ -217,11 +217,10 @@ export default function Portfolio() {
                   onClick={() => handleTabChange(category)}
                   aria-pressed={activeCategory === category}
                   aria-label={`Show ${category} projects`}
-                  className={`text-[11px] md:text-xs font-semibold uppercase tracking-[0.15em] px-6 py-2.5 md:px-8 md:py-3 rounded-[2rem] transition-all duration-300 border ${
-                    activeCategory === category
+                  className={`text-[11px] md:text-xs font-semibold uppercase tracking-[0.15em] px-6 py-2.5 md:px-8 md:py-3 rounded-[2rem] transition-all duration-300 border ${activeCategory === category
                       ? 'bg-[#B89672] text-white border-[#B89672] shadow-[0_8px_20px_rgba(184,150,114,0.3)]'
                       : 'bg-transparent text-[#6B635E] border-gray-300 hover:border-[#B89672] hover:text-[#B89672]'
-                  }`}
+                    }`}
                 >
                   {category}
                 </button>
@@ -230,9 +229,8 @@ export default function Portfolio() {
           </div>
 
           {/* Portfolio Grid */}
-          <div className={`w-full transition-all duration-500 ease-in-out transform ${
-            isTransitioning ? 'opacity-0 scale-[0.98] translate-y-4' : 'opacity-100 scale-100 translate-y-0'
-          }`}>
+          <div className={`w-full transition-all duration-500 ease-in-out transform ${isTransitioning ? 'opacity-0 scale-[0.98] translate-y-4' : 'opacity-100 scale-100 translate-y-0'
+            }`}>
             {displayCategory === 'All' && renderAllLayout()}
             {displayCategory === 'Residential' && renderResidentialLayout()}
             {displayCategory === 'Commercial' && renderCommercialLayout()}

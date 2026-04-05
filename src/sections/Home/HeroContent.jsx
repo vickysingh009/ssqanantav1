@@ -21,8 +21,20 @@ const HeroContent = () => {
       </p>
       
       <div className="button-group">
-        <Button variant="dark" onClick={() => navigate('/portfolio')}>View Portfolio</Button>
-        <Button variant="light">Book Now</Button>
+        <button 
+          className="btn-dark" 
+          onClick={() => navigate('/portfolio')}
+          style={{ position: 'relative', zIndex: 9999, touchAction: 'manipulation' }}
+        >
+          View Portfolio
+        </button>
+        <button 
+          className="btn-light" 
+          onClick={(e) => { e.preventDefault(); window.dispatchEvent(new Event('open-consult-form')); }}
+          style={{ position: 'relative', zIndex: 9999, touchAction: 'manipulation' }}
+        >
+          Book Now
+        </button>
       </div>
     </div>
   );

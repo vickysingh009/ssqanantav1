@@ -25,7 +25,7 @@ const Ticker = () => {
             </span>
           ))}
         </div>
-        
+
         {/* Duplicate Set for Seamless Infinite Loop */}
         <div className="ticker-content" aria-hidden="true">
           {items.map((item, index) => (

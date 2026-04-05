@@ -9,8 +9,11 @@ import imgArch01 from '../../assets/images/portfolio/architecture/architecture_1
 
 // Import Local Videos
 import video1 from '../../assets/video/video 1.mp4';
+import video1Webm from '../../assets/video/video 1.webm';
 import video2 from '../../assets/video/video 2.mp4';
+import video2Webm from '../../assets/video/video 2.webm';
 import video3 from '../../assets/video/video 3.mp4';
+import video3Webm from '../../assets/video/video 3.webm';
 
 // Import New Local Thumbnails
 import thumb1 from '../../assets/video/video 1.webp';
@@ -21,28 +24,31 @@ const projects = [
   {
     id: 1,
     title: "The Glass Pavilion",
-    duration: "1:20",
+    duration: "0:08",
     category: "Architecture",
     thumbnail: thumb1,
     video: video1,
+    videoWebm: video1Webm,
     desc: "A perfect blend of light and shadow, redefining the essence of modern living spaces."
   },
   {
     id: 2,
     title: "Urban Zen Loft",
-    duration: "0:55",
+    duration: "0:08",
     category: "Interior",
     thumbnail: thumb2,
     video: video2,
+    videoWebm: video2Webm,
     desc: "A unique fusion of contemporary minimalism and timeless comfort."
   },
   {
     id: 3,
     title: "Minimalist Retreat",
-    duration: "1:10",
+    duration: "0:08",
     category: "Residential",
     thumbnail: thumb3,
     video: video3,
+    videoWebm: video3Webm,
     desc: "Serenity meets luxury, where every detail evokes a sense of calm and elegance."
   }
 ];
@@ -54,16 +60,12 @@ const ProjectCard = ({ project, index }) => {
   const containerRef = useRef(null);
   const [hasVisited, setHasVisited] = useState(false);
 
-  // Intersection Observer for autoplay and lazy loading
+  // Intersection Observer for lazy loading and pause on scroll out
   React.useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setHasVisited(true);
-          if (videoRef.current) {
-            videoRef.current.play().catch(err => console.log("Autoplay blocked", err));
-            setIsPlaying(true);
-          }
         } else {
           if (videoRef.current) {
             videoRef.current.pause();
@@ -71,7 +73,7 @@ const ProjectCard = ({ project, index }) => {
           }
         }
       },
-      { threshold: 0.5 } // Play base tab half component dikhega tab
+      { threshold: 0.5 }
     );
 
     if (containerRef.current) {
@@ -111,7 +113,9 @@ const ProjectCard = ({ project, index }) => {
             muted // Required for autoplay
             playsInline
             controls={isPlaying}
+            preload="none"
           >
+            <source src={project.videoWebm} type="video/webm" />
             <source src={project.video} type="video/mp4" />
           </video>
         )}
@@ -121,6 +125,10 @@ const ProjectCard = ({ project, index }) => {
           <img
             src={project.thumbnail}
             alt={project.title}
+            loading="lazy"
+            decoding="async"
+            width="1920"
+            height="1080"
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
         )}

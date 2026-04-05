@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 const ContactForm = () => {
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -13,12 +14,58 @@ const ContactForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Yahan aap form submit ka logic daal sakte hain (jaise API call ya Email send)
-    console.log('Form Submitted:', formData);
-    alert('Thank you! We will get back to you soon.');
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "95cc8678-997c-4fd4-ad2b-76b446236b1a",
+          subject: "✨ New Lead from ContactForm - S² Ananta",
+          ...formData
+        }),
+      });
+      const result = await response.json();
+      if (result.success) {
+        setIsSubmitted(true);
+        setFormData({
+          name: '',
+          phone: '',
+          email: '',
+          service: '',
+          message: ''
+        });
+      } else {
+        alert("Submission failed. Please try again or contact us directly.");
+      }
+    } catch (error) {
+      alert('Network error! Please try again later.');
+    }
   };
+
+  if (isSubmitted) {
+    return (
+      <div className="flex flex-col items-center justify-center py-10 md:py-16 text-center animate-pulse-once">
+        <div className="w-16 h-16 rounded-full border border-[#B89672]/30 flex items-center justify-center mb-6 bg-[#FCFAF8]">
+          <svg className="w-8 h-8 text-[#B89672]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" /></svg>
+        </div>
+        <h3 className="text-2xl font-serif text-[#1A1A1A] mb-3">Inquiry Received</h3>
+        <p className="text-gray-500 text-sm md:text-[15px] max-w-md mx-auto leading-relaxed">
+          Thank you for reaching out! Our lead design team will review your requirements and contact you shortly.
+        </p>
+        <button 
+          onClick={() => setIsSubmitted(false)}
+          className="mt-8 text-[#B89672] text-[13px] uppercase tracking-widest font-medium hover:text-[#9a7b5c] transition-colors"
+        >
+          Submit Another Request
+        </button>
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-6 md:gap-8">
@@ -79,6 +126,7 @@ const ContactForm = () => {
             <option value="Bedroom" className="text-[#1A1A1A]">Bedroom Design</option>
             <option value="Full Home Interior" className="text-[#1A1A1A]">Full Home Interior</option>
             <option value="Commercial Space" className="text-[#1A1A1A]">Commercial Space</option>
+            <option value="Other" className="text-[#1A1A1A]">Other</option>
           </select>
           {/* Custom dropdown arrow */}
           <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">

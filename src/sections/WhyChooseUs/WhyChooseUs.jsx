@@ -11,7 +11,7 @@ const WhyChooseUs = () => {
   return (
     <section className="why-choose-us-section">
       <div className="wcu-main-container">
-        
+
         {/* Left Content */}
         <div className="wcu-left-content">
           <h2 className="wcu-heading">Why Choose Us</h2>
@@ -26,7 +26,7 @@ const WhyChooseUs = () => {
                 <div className="wcu-num-line"></div>
               </div>
               <h4 className="wcu-item-title">Personalized Designs</h4>
-              <p className="wcu-item-desc">Tailored to your vision<br/>and lifestyle.</p>
+              <p className="wcu-item-desc">Tailored to your vision<br />and lifestyle.</p>
             </div>
             <div className="wcu-grid-item">
               <div className="wcu-num-container">
@@ -34,7 +34,7 @@ const WhyChooseUs = () => {
                 <div className="wcu-num-line"></div>
               </div>
               <h4 className="wcu-item-title">Attention to Detail</h4>
-              <p className="wcu-item-desc">Precision in every element<br/>we design.</p>
+              <p className="wcu-item-desc">Precision in every element<br />we design.</p>
             </div>
             <div className="wcu-grid-item">
               <div className="wcu-num-container">
@@ -42,7 +42,7 @@ const WhyChooseUs = () => {
                 <div className="wcu-num-line"></div>
               </div>
               <h4 className="wcu-item-title">Modern & Functional</h4>
-              <p className="wcu-item-desc">Stylish, practical spaces that<br/>elevate everyday living.</p>
+              <p className="wcu-item-desc">Stylish, practical spaces that<br />elevate everyday living.</p>
             </div>
             <div className="wcu-grid-item">
               <div className="wcu-num-container">
@@ -50,7 +50,7 @@ const WhyChooseUs = () => {
                 <div className="wcu-num-line"></div>
               </div>
               <h4 className="wcu-item-title">Budget-Friendly Solutions</h4>
-              <p className="wcu-item-desc">Premium quality designs<br/>that fit your budget.</p>
+              <p className="wcu-item-desc">Premium quality designs<br />that fit your budget.</p>
             </div>
           </div>
         </div>
@@ -59,29 +59,31 @@ const WhyChooseUs = () => {
         <div className="wcu-right-wrapper">
           <div className="wcu-color-dots">
             <span className="wcu-color-hint">CHOOSE COLOR</span>
-            <span 
-              className={`wcu-dot cream ${activeImageIndex === 0 ? 'active' : ''}`} 
+            <span
+              className={`wcu-dot cream ${activeImageIndex === 0 ? 'active' : ''}`}
               onClick={() => setActiveImageIndex(0)}
             ></span>
-            <span 
-              className={`wcu-dot blue ${activeImageIndex === 1 ? 'active' : ''}`} 
+            <span
+              className={`wcu-dot blue ${activeImageIndex === 1 ? 'active' : ''}`}
               onClick={() => setActiveImageIndex(1)}
             ></span>
-            <span 
-              className={`wcu-dot green ${activeImageIndex === 2 ? 'active' : ''}`} 
+            <span
+              className={`wcu-dot green ${activeImageIndex === 2 ? 'active' : ''}`}
               onClick={() => setActiveImageIndex(2)}
             ></span>
           </div>
 
           <div className="wcu-right-image">
             {images.map((imgSrc, index) => (
-              <img 
+              <img
                 key={index}
-                src={imgSrc} 
-                alt="Modern Beige Living Room Variant" 
+                src={imgSrc}
+                alt="Modern Beige Living Room Variant"
                 className={`variant-img ${activeImageIndex === index ? 'active' : ''}`}
-                loading="lazy" 
+                loading="lazy"
                 decoding="async"
+                width="800"
+                height="800"
               />
             ))}
           </div>

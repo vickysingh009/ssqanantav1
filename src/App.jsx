@@ -4,23 +4,36 @@ import { HelmetProvider } from 'react-helmet-async';
 import './App.css';
 import SplashScreen from './components/layout/SplashScreen';
 import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import FloatingChat from './components/widgets/FloatingChat';
+import ConsultForm from './components/widgets/ConsultForm';
 
 // Route Splitting (Lazy Loading)
+export const prefetchRoute = (path) => {
+  const routes = {
+    '/': () => import('./sections/Home/Home'),
+    '/portfolio': () => import('./pages/Portfolio'),
+    '/about': () => import('./pages/AboutPage'),
+    '/contact': () => import('./pages/ContactPage'),
+    '/projects': () => import('./pages/ProjectsPage'),
+    '/services': () => import('./pages/ServicesPage'),
+  };
+  if (routes[path]) {
+    routes[path]().catch(err => console.warn('Prefetch failed:', err));
+  }
+};
+
 const Home = lazy(() => import('./sections/Home/Home'));
 const PortfolioPage = lazy(() => import('./pages/Portfolio'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const ProjectsPage = lazy(() => import('./pages/ProjectsPage'));
+const ServicesPage = lazy(() => import('./pages/ServicesPage'));
 
 // A clean fallback loader while chunks are downloaded
 const PageLoader = () => (
-  <div className="min-h-screen w-full flex justify-center items-center bg-[#F8F9FA]">
-    <div className="flex flex-col items-center gap-4">
-      <div className="w-8 h-8 md:w-10 md:h-10 border-2 border-[#B89672]/30 border-t-[#B89672] rounded-full animate-spin"></div>
-      <span className="text-[#8B7355] text-xs font-semibold uppercase tracking-widest animate-pulse">Loading Room...</span>
-    </div>
-  </div>
+  <div className="min-h-screen w-full bg-[#1C1A19]" aria-hidden="true" />
 );
 
 function App() {
@@ -35,12 +48,16 @@ function App() {
       <Suspense fallback={<PageLoader />}>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/services" element={<ServicesPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
         </Routes>
       </Suspense>
+      <Footer />
+      <FloatingChat />
+      <ConsultForm />
     </HelmetProvider>
   );
 }
