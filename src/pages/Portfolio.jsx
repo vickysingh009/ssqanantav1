@@ -104,7 +104,7 @@ export default function PortfolioGrid() {
       </div>
 
       {/* FILTER PILLS (Sticky, stays on scroll beneath navbar) */}
-      <div className="bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-200 sticky top-[64px] z-30 w-full transition-all duration-300">
+      <div className="bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-200 sticky top-[62px] md:top-[64px] z-30 w-full transition-all duration-300">
         <div className="max-w-[1400px] mx-auto px-4 md:px-12 lg:px-24 py-3">
           <div className="flex gap-2 md:gap-3 overflow-x-auto hide-scroll">
             {categories.map((category) => (
