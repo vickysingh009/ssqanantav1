@@ -24,7 +24,7 @@ const ContactForm = () => {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: "95cc8678-997c-4fd4-ad2b-76b446236b1a",
+          access_key: "9373fc8f-c027-4345-8e4d-32d2f04f668c",
           subject: "✨ New Lead from ContactForm - S² Ananta",
           ...formData
         }),

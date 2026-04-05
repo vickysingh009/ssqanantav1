@@ -8,6 +8,22 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
-    ViteImageOptimizer({}),
+    ViteImageOptimizer({
+      webp: { quality: 82, effort: 6 },
+      jpg: { quality: 82, progressive: true },
+      jpeg: { quality: 82, progressive: true },
+      png: { quality: [0.8, 0.9], speed: 4 },
+      svg: { plugins: [{ name: 'preset-default' }] },
+    }),
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+        }
+      }
+    }
+  }
 })
+

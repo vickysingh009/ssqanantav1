@@ -6,15 +6,15 @@ const SplashScreen = ({ onComplete }) => {
   const [isFading, setIsFading] = useState(false);
 
   useEffect(() => {
-    // Start fading out the splash after 1.8 seconds (duration of logo zoom animation)
+    // Start fading out the splash after 1.2 seconds
     const fadeTimer = setTimeout(() => {
       setIsFading(true);
-    }, 1800);
+    }, 1200);
 
     // Tell the parent App to officially clear the splash state once CSS fade finishes
     const unmountTimer = setTimeout(() => {
       onComplete();
-    }, 2600);
+    }, 1900);
 
     return () => {
       clearTimeout(fadeTimer);

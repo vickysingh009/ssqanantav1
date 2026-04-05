@@ -68,8 +68,14 @@ const projects = [
 const categories = ['All', 'Residential', 'Commercial', 'Kitchen', 'Bedroom'];
 
 // Helper component to render individual project cards with consistent hover effects
-const ProjectCard = memo(({ title, category, image, className, isVerticalText }) => (
-  <div className={`group relative overflow-hidden shadow-sm bg-[#EFECE8] ${className}`}>
+const ProjectCard = memo(({ title, category, image, className, isVerticalText, onClick }) => (
+  <div
+    className={`group relative overflow-hidden shadow-sm bg-[#EFECE8] cursor-pointer ${className}`}
+    onClick={onClick}
+    role="button"
+    tabIndex={0}
+    onKeyDown={(e) => e.key === 'Enter' && onClick?.()}
+  >
     {isVerticalText ? (
       <>
         <img src={image} alt={title} width="600" height="800" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
@@ -124,53 +130,60 @@ export default function Portfolio() {
     );
   }, [displayCategory]);
 
+  // Navigate to detail page, passing project data via state
+  const goToDetail = (title, category, image) => {
+    navigate(`/project/${encodeURIComponent(title.toLowerCase().replace(/\s+/g, '-'))}`, {
+      state: { project: { title, category, image } }
+    });
+  };
+
   // LAYOUT 2: "RESIDENTIAL" TAB
   const renderResidentialLayout = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-      <ProjectCard title="Luxury Family Villa" category="Residential" image={img1} className="h-[300px] lg:h-[480px] rounded-tl-[4rem] rounded-xl" />
-      <ProjectCard title="Cozy Living Space" category="Residential" image={img7} className="h-[300px] lg:h-[480px] rounded-2xl" />
-      <ProjectCard title="Serene Bedroom" category="Residential" image={img3} className="h-[300px] lg:h-[480px] rounded-2xl" />
-      <ProjectCard title="Classic Vintage Room" category="Residential" image={img13} className="h-[300px] lg:h-[480px] rounded-br-[4rem] rounded-xl" />
+      <ProjectCard title="Luxury Family Villa" category="Residential" image={img1} className="h-[300px] lg:h-[480px] rounded-tl-[4rem] rounded-xl" onClick={() => goToDetail('Luxury Family Villa', 'Residential', img1)} />
+      <ProjectCard title="Cozy Living Space" category="Residential" image={img7} className="h-[300px] lg:h-[480px] rounded-2xl" onClick={() => goToDetail('Cozy Living Space', 'Residential', img7)} />
+      <ProjectCard title="Serene Bedroom" category="Residential" image={img3} className="h-[300px] lg:h-[480px] rounded-2xl" onClick={() => goToDetail('Serene Bedroom', 'Residential', img3)} />
+      <ProjectCard title="Classic Vintage Room" category="Residential" image={img13} className="h-[300px] lg:h-[480px] rounded-br-[4rem] rounded-xl" onClick={() => goToDetail('Classic Vintage Room', 'Residential', img13)} />
     </div>
   );
 
   // LAYOUT 3: "COMMERCIAL" TAB
   const renderCommercialLayout = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-      <ProjectCard title="Executive Boardroom" category="Commercial" image={img16} className="h-[300px] lg:h-[480px] rounded-tl-[4rem] rounded-xl" />
-      <ProjectCard title="Corporate Headquarters" category="Commercial" image={img8} className="h-[300px] lg:h-[480px] rounded-2xl" />
-      <ProjectCard title="Urban Loft Workspace" category="Commercial" image={img2} className="h-[300px] lg:h-[480px] rounded-2xl" />
-      <ProjectCard title="Boutique Hotel Lobby" category="Commercial" image={img4} className="h-[300px] lg:h-[480px] rounded-br-[4rem] rounded-xl" />
+      <ProjectCard title="Executive Boardroom" category="Commercial" image={img16} className="h-[300px] lg:h-[480px] rounded-tl-[4rem] rounded-xl" onClick={() => goToDetail('Executive Boardroom', 'Commercial', img16)} />
+      <ProjectCard title="Corporate Headquarters" category="Commercial" image={img8} className="h-[300px] lg:h-[480px] rounded-2xl" onClick={() => goToDetail('Corporate Headquarters', 'Commercial', img8)} />
+      <ProjectCard title="Urban Loft Workspace" category="Commercial" image={img2} className="h-[300px] lg:h-[480px] rounded-2xl" onClick={() => goToDetail('Urban Loft Workspace', 'Commercial', img2)} />
+      <ProjectCard title="Boutique Hotel Lobby" category="Commercial" image={img4} className="h-[300px] lg:h-[480px] rounded-br-[4rem] rounded-xl" onClick={() => goToDetail('Boutique Hotel Lobby', 'Commercial', img4)} />
     </div>
   );
 
-  // LAYOUT 1: "ALL" TAB (4 Elegant Pillars - Like old Kitchen)
+  // LAYOUT 1: "ALL" TAB
   const renderAllLayout = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-      <ProjectCard title="Modern Minimalist Villa" category="Residential" image={img1} className="h-[300px] lg:h-[480px] rounded-tl-[4rem] rounded-xl" />
-      <ProjectCard title="Urban Loft Workspace" category="Commercial" image={img2} className="h-[300px] lg:h-[480px] rounded-2xl" />
-      <ProjectCard title="Serene Bedroom" category="Bedroom" image={img3} className="h-[300px] lg:h-[480px] rounded-2xl" />
-      <ProjectCard title="Contemporary Kitchen" category="Kitchen" image={img5} className="h-[300px] lg:h-[480px] rounded-br-[4rem] rounded-xl" />
+      <ProjectCard title="Modern Minimalist Villa" category="Residential" image={img1} className="h-[300px] lg:h-[480px] rounded-tl-[4rem] rounded-xl" onClick={() => goToDetail('Modern Minimalist Villa', 'Residential', img1)} />
+      <ProjectCard title="Urban Loft Workspace" category="Commercial" image={img2} className="h-[300px] lg:h-[480px] rounded-2xl" onClick={() => goToDetail('Urban Loft Workspace', 'Commercial', img2)} />
+      <ProjectCard title="Serene Bedroom" category="Bedroom" image={img3} className="h-[300px] lg:h-[480px] rounded-2xl" onClick={() => goToDetail('Serene Bedroom', 'Bedroom', img3)} />
+      <ProjectCard title="Contemporary Kitchen" category="Kitchen" image={img5} className="h-[300px] lg:h-[480px] rounded-br-[4rem] rounded-xl" onClick={() => goToDetail('Contemporary Kitchen', 'Kitchen', img5)} />
     </div>
   );
 
   // LAYOUT 4: "KITCHEN" TAB
   const renderKitchenLayout = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-      <ProjectCard title="Contemporary Style" category="Kitchen" image={img5} className="h-[300px] lg:h-[480px] rounded-tl-[4rem] rounded-xl" />
-      <ProjectCard title="Minimalist Open" category="Kitchen" image={img9} className="h-[300px] lg:h-[480px] rounded-2xl" />
-      <ProjectCard title="Modern Island" category="Kitchen" image={img11} className="h-[300px] lg:h-[480px] rounded-2xl" />
-      <ProjectCard title="Luxury Marble" category="Kitchen" image={img10} className="h-[300px] lg:h-[480px] rounded-br-[4rem] rounded-xl" />
+      <ProjectCard title="Contemporary Style" category="Kitchen" image={img5} className="h-[300px] lg:h-[480px] rounded-tl-[4rem] rounded-xl" onClick={() => goToDetail('Contemporary Style', 'Kitchen', img5)} />
+      <ProjectCard title="Minimalist Open" category="Kitchen" image={img9} className="h-[300px] lg:h-[480px] rounded-2xl" onClick={() => goToDetail('Minimalist Open', 'Kitchen', img9)} />
+      <ProjectCard title="Modern Island" category="Kitchen" image={img11} className="h-[300px] lg:h-[480px] rounded-2xl" onClick={() => goToDetail('Modern Island', 'Kitchen', img11)} />
+      <ProjectCard title="Luxury Marble" category="Kitchen" image={img10} className="h-[300px] lg:h-[480px] rounded-br-[4rem] rounded-xl" onClick={() => goToDetail('Luxury Marble', 'Kitchen', img10)} />
     </div>
   );
 
   // LAYOUT 5: "BEDROOM" TAB
   const renderBedroomLayout = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-      <ProjectCard title="Serene Master Bedroom" category="Bedroom" image={img3} className="h-[300px] lg:h-[480px] rounded-tl-[4rem] rounded-xl" />
-      <ProjectCard title="Minimalist Guest Room" category="Bedroom" image={img12} className="h-[300px] lg:h-[480px] rounded-2xl" />
-      <ProjectCard title="Classic Vintage Room" category="Bedroom" image={img13} className="h-[300px] lg:h-[480px] rounded-2xl" />
-      <ProjectCard title="Luxury Suite Design" category="Bedroom" image={img14} className="h-[300px] lg:h-[480px] rounded-br-[4rem] rounded-xl" />
+      <ProjectCard title="Serene Master Bedroom" category="Bedroom" image={img3} className="h-[300px] lg:h-[480px] rounded-tl-[4rem] rounded-xl" onClick={() => goToDetail('Serene Master Bedroom', 'Bedroom', img3)} />
+      <ProjectCard title="Minimalist Guest Room" category="Bedroom" image={img12} className="h-[300px] lg:h-[480px] rounded-2xl" onClick={() => goToDetail('Minimalist Guest Room', 'Bedroom', img12)} />
+      <ProjectCard title="Classic Vintage Room" category="Bedroom" image={img13} className="h-[300px] lg:h-[480px] rounded-2xl" onClick={() => goToDetail('Classic Vintage Room', 'Bedroom', img13)} />
+      <ProjectCard title="Luxury Suite Design" category="Bedroom" image={img14} className="h-[300px] lg:h-[480px] rounded-br-[4rem] rounded-xl" onClick={() => goToDetail('Luxury Suite Design', 'Bedroom', img14)} />
     </div>
   );
 

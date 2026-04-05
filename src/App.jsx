@@ -1,5 +1,5 @@
 import React, { useState, Suspense, lazy } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import './App.css';
 import SplashScreen from './components/layout/SplashScreen';
@@ -30,6 +30,22 @@ const AboutPage = lazy(() => import('./pages/AboutPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const ProjectsPage = lazy(() => import('./pages/ProjectsPage'));
 const ServicesPage = lazy(() => import('./pages/ServicesPage'));
+const DetailPage = lazy(() => import('./pages/DetailPage'));
+
+// Wrapper: reads project from React Router location.state
+function DetailPageWrapper() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const project = location.state?.project || null;
+
+  if (!project) {
+    // If no project data (e.g. direct URL access), redirect back to portfolio
+    React.useEffect(() => { navigate('/portfolio'); }, []);
+    return null;
+  }
+
+  return <DetailPage project={project} />;
+}
 
 // A clean fallback loader while chunks are downloaded
 const PageLoader = () => (
@@ -53,6 +69,7 @@ function App() {
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/project/:id" element={<DetailPageWrapper />} />
         </Routes>
       </Suspense>
       <Footer />

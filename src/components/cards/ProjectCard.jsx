@@ -1,9 +1,30 @@
 import React, { memo } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // INDIVIDUAL PROJECT CARD COMPONENT
 const ProjectCard = memo(({ project }) => {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(`/project/${project.id}`, {
+      state: {
+        project: {
+          title: project.title,
+          category: project.category,
+          image: project.images[0],
+        }
+      }
+    });
+  };
+
   return (
-    <article className="bg-white rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-100 flex flex-col group">
+    <article
+      className="bg-white rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-100 flex flex-col group cursor-pointer"
+      onClick={handleCardClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => e.key === 'Enter' && handleCardClick()}
+    >
 
       {/* Image Wrapper (Semantic HTML) */}
       <figure className="relative w-full aspect-[4/3] overflow-hidden bg-gray-100 m-0">
@@ -26,13 +47,13 @@ const ProjectCard = memo(({ project }) => {
         </h3>
 
         <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
-          <a href="#" className="text-[#B89672] text-xs md:text-sm font-medium hover:text-[#9a7b5c] transition-colors flex items-center gap-1 group/link">
+          <span className="text-[#B89672] text-xs md:text-sm font-medium flex items-center gap-1 group/link">
             Explore more
-            <svg className="w-3.5 h-3.5 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-          </a>
+            <svg className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+          </span>
 
           <button
-            onClick={() => window.dispatchEvent(new Event('open-consult-form'))}
+            onClick={(e) => { e.stopPropagation(); window.dispatchEvent(new Event('open-consult-form')); }}
             className="bg-[#2D2825] hover:bg-[#B89672] text-white px-3 md:px-4 py-2 rounded text-[11px] md:text-sm font-medium transition-colors shadow-sm"
           >
             Get a Quote

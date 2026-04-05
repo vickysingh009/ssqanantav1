@@ -11,8 +11,7 @@
   display: flex;
   width: max-content;
   animation: ticker-scroll 25s linear infinite;
-  /* Ensure smooth rendering during animation */
-  will-change: transform;
+  contain: layout;
 }
 
 /* Hover to pause (optional, but good for UX) */

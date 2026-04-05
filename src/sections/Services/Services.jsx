@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Services.css';
 
 import imgModular from '../../assets/images/our services/Modular Kitchen Design.webp';
@@ -10,6 +11,9 @@ import imgResidential from '../../assets/images/our services/Residential Interio
 const imgMap = "https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=800&auto=format&fit=crop";
 
 const Services = () => {
+  const navigate = useNavigate();
+  const goToServices = () => navigate('/services');
+
   return (
     <section className="services-section">
       {/* Top Header Section */}
@@ -44,7 +48,7 @@ const Services = () => {
         {/* SLIDER GROUP (Top 3 items for mobile slider + extra infinite simulated slides) */}
         <div className="mobile-slider-wrapper">
           {/* BASE ORIGINAL ITEMS (Visible on both Desktop and Mobile) */}
-          <div className="service-card card-tall">
+          <div className="service-card card-tall cursor-pointer" onClick={goToServices}>
             <img src={imgModular} alt="Modular Kitchen Design" className="service-img" loading="lazy" />
             <div className="service-overlay">
               <h3 className="service-name">Modular Kitchen Design</h3>
@@ -52,7 +56,7 @@ const Services = () => {
             </div>
           </div>
 
-          <div className="service-card card-half-right-top">
+          <div className="service-card card-half-right-top cursor-pointer" onClick={goToServices}>
             <img src={imgResidential} alt="Residential Interior Design" className="service-img" loading="lazy"
               onError={(e) => { e.target.src = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop"; }} />
             <div className="service-overlay">
@@ -61,7 +65,7 @@ const Services = () => {
             </div>
           </div>
 
-          <div className="service-card card-quarter-1">
+          <div className="service-card card-quarter-1 cursor-pointer" onClick={goToServices}>
             <img src={imgOffice} alt="Office & Commercial" className="service-img" loading="lazy" />
             <div className="service-overlay">
               <h3 className="service-name">Office & Commercial</h3>
@@ -69,53 +73,11 @@ const Services = () => {
             </div>
           </div>
 
-          {/* DUPLICATE COPIES FOR INFINITE SLIDER (Hidden strictly on Desktop) */}
-          {[1, 2, 3, 4].map((setIndex) => (
-            <React.Fragment key={setIndex}>
-              {/* Added Living Room and Bedroom to the swipe queue */}
-              <div className="service-card mobile-only-slide">
-                <img src={imgLiving} alt="Living Room Design" className="service-img" loading="lazy" />
-                <div className="service-overlay">
-                  <h3 className="service-name">Living Room Design</h3>
-                </div>
-              </div>
-              <div className="service-card mobile-only-slide">
-                <img src={imgBedroom} alt="Bedroom Interior" className="service-img" loading="lazy" />
-                <div className="service-overlay">
-                  <h3 className="service-name">Bedroom Interior</h3>
-                </div>
-              </div>
-              {/* Repeat the original 3 context to simulate infinity */}
-              {setIndex < 4 && (
-                <>
-                  <div className="service-card mobile-only-slide">
-                    <img src={imgModular} alt="Modular Kitchen Design" className="service-img" loading="lazy" />
-                    <div className="service-overlay">
-                      <h3 className="service-name">Modular Kitchen Design</h3>
-                    </div>
-                  </div>
-                  <div className="service-card mobile-only-slide">
-                    <img src={imgResidential} alt="Residential Interior Design" className="service-img" loading="lazy"
-                      onError={(e) => { e.target.src = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop"; }} />
-                    <div className="service-overlay">
-                      <h3 className="service-name">Residential Interior Design</h3>
-                    </div>
-                  </div>
-                  <div className="service-card mobile-only-slide">
-                    <img src={imgOffice} alt="Office & Commercial" className="service-img" loading="lazy" />
-                    <div className="service-overlay">
-                      <h3 className="service-name">Office & Commercial</h3>
-                    </div>
-                  </div>
-                </>
-              )}
-            </React.Fragment>
-          ))}
         </div>
 
         {/* BOTTOM FIXED GROUP (Bottom 3 items for mobile grid) */}
         <div className="mobile-bottom-grid">
-          <div className="service-card card-half-top">
+          <div className="service-card card-half-top cursor-pointer" onClick={goToServices}>
             <img src={imgLiving} alt="Living Room Design" className="service-img" loading="lazy" />
             <div className="service-overlay">
               <h3 className="service-name">Living Room Design</h3>
@@ -123,7 +85,7 @@ const Services = () => {
             </div>
           </div>
 
-          <div className="service-card card-half-bottom">
+          <div className="service-card card-half-bottom cursor-pointer" onClick={goToServices}>
             <img src={imgBedroom} alt="Bedroom Interior" className="service-img" loading="lazy" />
             <div className="service-overlay">
               <h3 className="service-name">Bedroom Interior</h3>

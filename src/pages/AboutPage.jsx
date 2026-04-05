@@ -72,14 +72,14 @@ export default function AboutPage() {
             </div>
 
             {/* Floating Experience Badge */}
-            <div className="absolute top-4 left-0 md:top-10 md:-left-8 bg-white py-3 px-4 md:p-5 rounded-2xl shadow-[0_8px_25px_rgba(0,0,0,0.08)] border border-gray-100 z-30 flex items-center gap-3 animate-bounce will-change-transform" style={{ animationDuration: '4s' }}>
+            <div className="absolute top-4 left-0 md:top-10 md:-left-8 bg-white py-3 px-4 md:p-5 rounded-2xl shadow-[0_8px_25px_rgba(0,0,0,0.08)] border border-gray-100 z-30 flex items-center gap-3">
               <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#FCFAF8] flex items-center justify-center text-[#B89672]">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                 </svg>
               </div>
               <div className="flex flex-col justify-center">
-                <div className="text-[22px] md:text-2xl font-serif font-extrabold text-[#2D2825] leading-none mb-0.5">10+</div>
+                <div className="text-[22px] md:text-2xl font-serif font-extrabold text-[#2D2825] leading-none mb-0.5">5+</div>
                 <div className="text-[9px] md:text-[10px] font-bold text-[#8C837C] uppercase tracking-widest leading-tight">Years of<br />Excellence</div>
               </div>
             </div>

@@ -9,11 +9,8 @@ import imgArch01 from '../../assets/images/portfolio/architecture/architecture_1
 
 // Import Local Videos
 import video1 from '../../assets/video/video 1.mp4';
-import video1Webm from '../../assets/video/video 1.webm';
 import video2 from '../../assets/video/video 2.mp4';
-import video2Webm from '../../assets/video/video 2.webm';
 import video3 from '../../assets/video/video 3.mp4';
-import video3Webm from '../../assets/video/video 3.webm';
 
 // Import New Local Thumbnails
 import thumb1 from '../../assets/video/video 1.webp';
@@ -28,7 +25,6 @@ const projects = [
     category: "Architecture",
     thumbnail: thumb1,
     video: video1,
-    videoWebm: video1Webm,
     desc: "A perfect blend of light and shadow, redefining the essence of modern living spaces."
   },
   {
@@ -38,7 +34,6 @@ const projects = [
     category: "Interior",
     thumbnail: thumb2,
     video: video2,
-    videoWebm: video2Webm,
     desc: "A unique fusion of contemporary minimalism and timeless comfort."
   },
   {
@@ -48,7 +43,6 @@ const projects = [
     category: "Residential",
     thumbnail: thumb3,
     video: video3,
-    videoWebm: video3Webm,
     desc: "Serenity meets luxury, where every detail evokes a sense of calm and elegance."
   }
 ];
@@ -115,7 +109,6 @@ const ProjectCard = ({ project, index }) => {
             controls={isPlaying}
             preload="none"
           >
-            <source src={project.videoWebm} type="video/webm" />
             <source src={project.video} type="video/mp4" />
           </video>
         )}

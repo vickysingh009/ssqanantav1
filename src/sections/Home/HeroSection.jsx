@@ -5,13 +5,17 @@ import bgMobile from '../../assets/mobile_assets/hero_mobile.webp';
 
 const HeroSection = () => {
   return (
-    <div 
-      className="hero-container" 
-      style={{ 
-        '--bg-desktop': `url(${bgDesktop})`,
-        '--bg-mobile': `url(${bgMobile})` 
-      }}
-    >
+    <div className="hero-container">
+      {/* Hero background image as real <img> for browser LCP priority */}
+      <img
+        src={bgDesktop}
+        alt=""
+        aria-hidden="true"
+        fetchPriority="high"
+        loading="eager"
+        decoding="sync"
+        className="hero-bg-img"
+      />
       <div className="hero-overlay"></div>
       <HeroContent />
     </div>

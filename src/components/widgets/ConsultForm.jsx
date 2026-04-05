@@ -36,7 +36,7 @@ export default function ConsultForm() {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: "95cc8678-997c-4fd4-ad2b-76b446236b1a",
+          access_key: "9373fc8f-c027-4345-8e4d-32d2f04f668c",
           subject: "✨ New Lead from ConsultForm - S² Ananta",
           ...formData
         }),
@@ -60,10 +60,6 @@ export default function ConsultForm() {
     <div className="min-h-screen bg-[#2B2B2B]/80 backdrop-blur-md fixed inset-0 z-[200] flex items-center justify-center p-4 md:p-8 font-sans" style={{ minHeight: '100vh', width: '100vw' }}>
       <style>
         {`
-          @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap');
-          .font-serif { font-family: 'Playfair Display', serif; }
-          .font-sans { font-family: 'Inter', sans-serif; }
-          
           @keyframes modalFadeScale {
             from { opacity: 0; transform: scale(0.95) translateY(10px); }
             to { opacity: 1; transform: scale(1) translateY(0); }

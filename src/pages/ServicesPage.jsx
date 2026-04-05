@@ -54,10 +54,6 @@ export default function ServicesPage() {
     <div className="min-h-screen bg-[#FCFAF8] font-sans text-[#2D2825] overflow-hidden">
       <style>
         {`
-          @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap');
-          .font-serif { font-family: 'Playfair Display', serif; }
-          .font-sans { font-family: 'Inter', sans-serif; }
-          
           @keyframes fadeUp {
             from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
@@ -73,8 +69,8 @@ export default function ServicesPage() {
       {/* ========================================= */}
       <header className="relative pt-32 pb-20 md:pt-40 md:pb-28 px-6 md:px-12 lg:px-24 text-center">
         {/* Subtle Background Elements */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#B89672]/5 rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/3"></div>
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#B89672]/5 rounded-full blur-[80px] pointer-events-none translate-y-1/3 -translate-x-1/4"></div>
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] pointer-events-none -translate-y-1/2 translate-x-1/3" style={{ background: 'radial-gradient(circle, rgba(184,150,114,0.08) 0%, transparent 60%)' }}></div>
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] pointer-events-none translate-y-1/3 -translate-x-1/4" style={{ background: 'radial-gradient(circle, rgba(184,150,114,0.06) 0%, transparent 60%)' }}></div>
 
         <div className={`max-w-4xl mx-auto relative z-10 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="inline-flex items-center gap-4 mb-8">
@@ -199,7 +195,10 @@ export default function ServicesPage() {
           <p className="text-gray-400 font-light text-sm md:text-base mb-12 max-w-xl mx-auto">
             Contact us today to schedule a free consultation and take the first step towards your dream space.
           </p>
-          <button className="bg-[#B89672] hover:bg-white text-white hover:text-[#1C1A19] px-10 py-4 rounded-sm text-xs md:text-sm uppercase tracking-[0.2em] font-bold transition-all duration-500 shadow-xl">
+          <button 
+            onClick={() => window.dispatchEvent(new Event('open-consult-form'))}
+            className="bg-[#B89672] hover:bg-white text-white hover:text-[#1C1A19] px-10 py-4 rounded-sm text-xs md:text-sm uppercase tracking-[0.2em] font-bold transition-all duration-500 shadow-xl"
+          >
             Book a Consultation
           </button>
         </div>

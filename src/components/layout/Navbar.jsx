@@ -89,23 +89,23 @@ const Navbar = ({ isHome }) => {
   return (
     <>
       <nav
-        className={`navbar transition-all duration-700 ease-in-out !z-[200] ${!isHome ? 'navbar-global' : ''
+        className={`navbar transition-[padding,background-color,box-shadow] duration-700 ease-in-out !z-[200] ${!isHome ? 'navbar-global' : ''
           } ${isMenuOpen
             ? 'max-md:!fixed max-md:!top-0 max-md:!left-0 max-md:!w-full max-md:!bg-transparent max-md:!shadow-none max-md:!py-6'
             : isHome
-              ? (isScrolled ? '!fixed !top-0 !left-0 !w-full !bg-[#1A1A1A]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.5)] !py-[8px]' : '!fixed !top-0 !left-0 !w-full bg-transparent shadow-none !py-8')
+              ? (isScrolled ? '!fixed !top-0 !left-0 !w-full !bg-[#1A1A1A]/98 shadow-[0_4px_20px_rgba(0,0,0,0.5)] !py-[8px]' : '!fixed !top-0 !left-0 !w-full bg-transparent shadow-none !py-8')
               : ''
           }`}
       >
         {/* DESKTOP LOGO */}
         <Link to="/" className="logo relative !z-[210] hidden md:flex items-center" aria-label="Home - S² Ananta">
-          <img src={logoImg} alt="E1 Logo" fetchPriority="high" decoding="sync" className={`transition-all duration-700 ${(!isHome || isScrolled) ? '!h-[48px]' : '!h-[60px]'}`} />
+          <img src={logoImg} alt="E1 Logo" fetchPriority="high" decoding="sync" className={`transition-[height] duration-700 ${(!isHome || isScrolled) ? '!h-[48px]' : '!h-[60px]'}`} />
         </Link>
 
         {/* MOBILE TEXT LOGO */}
         <Link
           to="/"
-          className={`relative !z-[210] flex flex-col md:hidden transition-all duration-500 origin-left ${isHome && isScrolled && !isMenuOpen ? 'scale-[0.85]' : 'scale-100'
+          className={`relative !z-[210] flex flex-col md:hidden transition-[transform] duration-500 origin-left ${isHome && isScrolled && !isMenuOpen ? 'scale-[0.85]' : 'scale-100'
             }`}
           style={{ color: isMenuOpen ? '#F5E9DC' : '#FFFFFF' }}
         >
