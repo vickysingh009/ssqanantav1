@@ -28,7 +28,6 @@ export default function ConsultForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Button clicked! Sending to Web3Forms...");
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -44,13 +43,12 @@ export default function ConsultForm() {
       });
       const result = await response.json();
       if (result.success) {
-        alert("Web3Forms success!");
         setIsSubmitted(true);
       } else {
-        alert("Web3Forms error response: " + JSON.stringify(result));
+        alert("Submission failed. Please try again or contact us directly.");
       }
     } catch (error) {
-      alert('Network error catch block: ' + error.message);
+      alert('Network error! Please try again later.');
     }
   };
 
