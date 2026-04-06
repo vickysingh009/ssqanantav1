@@ -74,7 +74,7 @@ export default function ContactPage() {
                 </div>
                 <div className="flex flex-col justify-center">
                   <p className="text-[#8C837C] text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-semibold mb-1.5">Email Address</p>
-                  <a href="mailto:snehasoni543210@gmail.com" className="text-[#2D2825] text-[15px] font-medium hover:text-[#B89672] transition-colors leading-none break-all">snehasoni543210@gmail.com</a>
+                  <a href="mailto:sneha@ssqananta.com" className="text-[#2D2825] text-[15px] font-medium hover:text-[#B89672] transition-colors leading-none break-all">sneha@ssqananta.com</a>
                 </div>
               </div>
 

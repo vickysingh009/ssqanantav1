@@ -166,7 +166,7 @@ export default function AboutPage() {
                 </div>
                 <div>
                   <p className="text-[11px] md:text-xs text-gray-500 uppercase tracking-widest font-medium mb-1">Email Us</p>
-                  <a href="mailto:snehasoni543210@gmail.com" className="text-[14px] md:text-sm font-medium hover:text-[#B89672] transition-colors break-all">snehasoni543210@gmail.com</a>
+                  <a href="mailto:sneha@ssqananta.com" className="text-[14px] md:text-sm font-medium hover:text-[#B89672] transition-colors break-all">sneha@ssqananta.com</a>
                 </div>
               </div>
 

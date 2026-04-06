@@ -106,8 +106,8 @@ export default function Footer() {
                 <div className="w-5 flex justify-center text-[#F5E9DC]">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                 </div>
-                <a href="mailto:snehasoni543210@gmail.com" className="hover:text-white transition-colors break-all">
-                  snehasoni543210@gmail.com
+                <a href="mailto:sneha@ssqananta.com" className="hover:text-white transition-colors break-all">
+                  sneha@ssqananta.com
                 </a>
               </div>
 
