@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import SEO from '../components/seo/SEO';
 import { portfolioData, categories } from '../data/portfolioData';
 import ProjectCard from '../components/cards/ProjectCard';
+import LazyViewportReveal from '../components/layout/LazyViewportReveal';
 
 export default function PortfolioGrid() {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -152,27 +153,28 @@ export default function PortfolioGrid() {
                     const catProjects = portfolioData.filter(p => p.category === category);
                     if (catProjects.length === 0) return null;
 
-                    // Show a reasonable preview of each category in "All" view
                     return (
-                      <div key={category} className="flex flex-col">
-                        <div className="flex items-center gap-4 mb-6 md:mb-8">
-                          <h2 className="text-2xl md:text-3xl font-semibold font-sans tracking-tight text-[#1A1A1A]">{category}</h2>
-                          <div className="flex-grow h-[1px] bg-gray-200"></div>
+                      <LazyViewportReveal key={category} minHeight="400px">
+                        <div className="flex flex-col">
+                          <div className="flex items-center gap-4 mb-6 md:mb-8">
+                            <h2 className="text-2xl md:text-3xl font-semibold font-sans tracking-tight text-[#1A1A1A]">{category}</h2>
+                            <div className="flex-grow h-[1px] bg-gray-200"></div>
+                          </div>
+                          <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
+                            {catProjects.slice(0, 6).map((project) => (
+                              <ProjectCard key={project.id} project={project} />
+                            ))}
+                          </section>
+                          {catProjects.length > 6 && (
+                            <button
+                              onClick={() => handleTabClick(category)}
+                              className="mt-6 text-[#B89672] text-sm font-medium hover:underline self-start"
+                            >
+                              View all {category} designs +
+                            </button>
+                          )}
                         </div>
-                        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
-                          {catProjects.slice(0, 6).map((project) => (
-                            <ProjectCard key={project.id} project={project} />
-                          ))}
-                        </section>
-                        {catProjects.length > 6 && (
-                          <button
-                            onClick={() => handleTabClick(category)}
-                            className="mt-6 text-[#B89672] text-sm font-medium hover:underline self-start"
-                          >
-                            View all {category} designs +
-                          </button>
-                        )}
-                      </div>
+                      </LazyViewportReveal>
                     );
                   })}
                 </div>

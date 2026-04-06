@@ -11,7 +11,6 @@ const Navbar = ({ isHome }) => {
   // Swipe gesture states
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
-
   useEffect(() => {
     let ticking = false;
     const handleScrollEvent = () => {
@@ -195,7 +194,6 @@ const Navbar = ({ isHome }) => {
                   <Link
                     to={item.path}
                     onMouseEnter={() => prefetchRoute(item.path)}
-                    onTouchStart={() => prefetchRoute(item.path)}
                     onClick={() => { setIsMenuOpen(false); document.body.style.overflow = 'auto'; }}
                     className="group flex items-baseline gap-4"
                   >

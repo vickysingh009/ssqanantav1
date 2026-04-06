@@ -9,6 +9,8 @@ const HeroSection = () => {
       {/* Hero background image as real <img> for browser LCP priority */}
       <img
         src={bgDesktop}
+        srcSet={`${bgMobile} 768w, ${bgDesktop} 1440w`}
+        sizes="(max-width: 768px) 100vw, 100vw"
         alt=""
         aria-hidden="true"
         fetchPriority="high"
