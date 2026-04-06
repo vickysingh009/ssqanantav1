@@ -51,3 +51,10 @@ ehthumbs.db
 *.pyc
 __pycache__/
 download_portfolio_images.py
+
+# Lint Reports
+eslint_report.json
+eslint_report.txt
+
+# Antigravity Temp Files
+.antigravityignore
