@@ -6,11 +6,11 @@ export default function ConsultForm() {
   const [isOpen, setIsOpen] = useState(false); // Default to false
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    service: '',
-    message: ''
+    Full_Name: '',
+    Phone_Number: '',
+    Email_Address: '',
+    Interested_Service: '',
+    Message: ''
   });
 
   useEffect(() => {
@@ -37,7 +37,9 @@ export default function ConsultForm() {
         },
         body: JSON.stringify({
           access_key: "2dfd139f-8208-4fa1-89e7-a58189875b5c",
-          subject: "✨ New Lead from ConsultForm - S² Ananta",
+          subject: "New Consultation Request | S² Ananta Website",
+          from_name: "S² Ananta Portfolio Website",
+          template: "table",
           ...formData
         }),
       });
@@ -146,9 +148,9 @@ export default function ConsultForm() {
                 <div className="relative group">
                   <input
                     type="text"
-                    name="name"
-                    id="name"
-                    value={formData.name}
+                    name="Full_Name"
+                    id="full_name"
+                    value={formData.Full_Name}
                     onChange={handleChange}
                     required
                     className="w-full bg-transparent border-b border-gray-200 py-2 text-sm text-[#2B2B2B] focus:outline-none focus:border-[#4E342E] transition-colors peer placeholder-transparent"
@@ -164,9 +166,9 @@ export default function ConsultForm() {
                   <div className="relative group">
                     <input
                       type="tel"
-                      name="phone"
-                      id="phone"
-                      value={formData.phone}
+                      name="Phone_Number"
+                      id="phone_number"
+                      value={formData.Phone_Number}
                       onChange={handleChange}
                       required
                       className="w-full bg-transparent border-b border-gray-200 py-2 text-sm text-[#2B2B2B] focus:outline-none focus:border-[#4E342E] transition-colors peer placeholder-transparent"
@@ -181,9 +183,9 @@ export default function ConsultForm() {
                   <div className="relative group">
                     <input
                       type="email"
-                      name="email"
-                      id="email"
-                      value={formData.email}
+                      name="Email_Address"
+                      id="email_address"
+                      value={formData.Email_Address}
                       onChange={handleChange}
                       className="w-full bg-transparent border-b border-gray-200 py-2 text-sm text-[#2B2B2B] focus:outline-none focus:border-[#4E342E] transition-colors peer placeholder-transparent"
                       placeholder="Email Address"
@@ -197,8 +199,8 @@ export default function ConsultForm() {
                 {/* Custom Styled Select */}
                 <div className="relative group mt-2">
                   <select
-                    name="service"
-                    value={formData.service}
+                    name="Interested_Service"
+                    value={formData.Interested_Service}
                     onChange={handleChange}
                     required
                     className={`w-full bg-transparent border-b border-gray-200 py-2 text-sm focus:outline-none focus:border-[#4E342E] transition-colors appearance-none cursor-pointer ${formData.service ? 'text-[#2B2B2B]' : 'text-gray-400'}`}
@@ -219,9 +221,9 @@ export default function ConsultForm() {
                 {/* Floating Label Textarea - Message */}
                 <div className="relative group mt-2">
                   <textarea
-                    name="message"
-                    id="message"
-                    value={formData.message}
+                    name="Message"
+                    id="message_box"
+                    value={formData.Message}
                     onChange={handleChange}
                     rows="2"
                     className="w-full bg-transparent border-b border-gray-200 py-2 text-sm text-[#2B2B2B] focus:outline-none focus:border-[#4E342E] transition-colors peer placeholder-transparent resize-none"

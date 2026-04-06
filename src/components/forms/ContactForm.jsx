@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 const ContactForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    service: '',
-    message: ''
+    Full_Name: '',
+    Phone_Number: '',
+    Email_Address: '',
+    Interested_Service: '',
+    Message: ''
   });
 
   const handleChange = (e) => {
@@ -25,7 +25,9 @@ const ContactForm = () => {
         },
         body: JSON.stringify({
           access_key: "2dfd139f-8208-4fa1-89e7-a58189875b5c",
-          subject: "✨ New Lead from ContactForm - S² Ananta",
+          subject: "New Project Inquiry | S² Ananta Website",
+          from_name: "S² Ananta Portfolio Website",
+          template: "table",
           ...formData
         }),
       });
@@ -33,11 +35,11 @@ const ContactForm = () => {
       if (result.success) {
         setIsSubmitted(true);
         setFormData({
-          name: '',
-          phone: '',
-          email: '',
-          service: '',
-          message: ''
+          Full_Name: '',
+          Phone_Number: '',
+          Email_Address: '',
+          Interested_Service: '',
+          Message: ''
         });
       } else {
         alert("Submission failed. Please try again or contact us directly.");
@@ -74,8 +76,8 @@ const ContactForm = () => {
         <div className="relative group">
           <input
             type="text"
-            name="name"
-            value={formData.name}
+            name="Full_Name"
+            value={formData.Full_Name}
             onChange={handleChange}
             placeholder="Full Name *"
             required
@@ -87,8 +89,8 @@ const ContactForm = () => {
         <div className="relative group">
           <input
             type="tel"
-            name="phone"
-            value={formData.phone}
+            name="Phone_Number"
+            value={formData.Phone_Number}
             onChange={handleChange}
             placeholder="Phone Number *"
             required
@@ -102,8 +104,8 @@ const ContactForm = () => {
         <div className="relative group">
           <input
             type="email"
-            name="email"
-            value={formData.email}
+            name="Email_Address"
+            value={formData.Email_Address}
             onChange={handleChange}
             placeholder="Email Address"
             className="w-full bg-transparent border-b border-gray-300 py-2.5 md:py-3 text-[13px] md:text-sm text-[#1A1A1A] focus:outline-none focus:border-[#B89672] transition-colors placeholder:text-gray-400"
@@ -113,8 +115,8 @@ const ContactForm = () => {
         {/* Service Dropdown */}
         <div className="relative group">
           <select
-            name="service"
-            value={formData.service}
+            name="Interested_Service"
+            value={formData.Interested_Service}
             onChange={handleChange}
             required
             aria-label="Interested Service"
@@ -138,8 +140,8 @@ const ContactForm = () => {
       {/* Message Textarea */}
       <div className="relative group">
         <textarea
-          name="message"
-          value={formData.message}
+          name="Message"
+          value={formData.Message}
           onChange={handleChange}
           placeholder="Tell us about your project or requirements..."
           rows="2"
