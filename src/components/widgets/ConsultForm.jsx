@@ -39,8 +39,21 @@ export default function ConsultForm() {
           access_key: "2dfd139f-8208-4fa1-89e7-a58189875b5c",
           subject: "New Consultation Request | S² Ananta Website",
           from_name: "S² Ananta Portfolio Website",
-          template: "table",
-          ...formData
+          email: formData.Email_Address,
+          message: `
+——————————————————————————————
+NEW CONSULTATION REQUEST - S² Ananta
+——————————————————————————————
+
+Full Name       : ${formData.Full_Name}
+Phone Number    : ${formData.Phone_Number}
+Email Address   : ${formData.Email_Address || 'Not provided'}
+Interested In   : ${formData.Interested_Service}
+
+Message:
+${formData.Message || 'No message provided'}
+——————————————————————————————
+          `
         }),
       });
       const result = await response.json();
