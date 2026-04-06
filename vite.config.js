@@ -16,22 +16,4 @@ export default defineConfig({
       svg: { plugins: [{ name: 'preset-default' }] },
     }),
   ],
-  build: {
-    chunkSizeWarningLimit: 800,
-    rollupOptions: {
-      output: {
-        manualChunks(id) {
-          if (id.includes('node_modules')) {
-            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) {
-              return 'vendor';
-            }
-            if (id.includes('lenis')) {
-              return 'ui';
-            }
-          }
-        }
-      }
-    }
-  }
 })
-

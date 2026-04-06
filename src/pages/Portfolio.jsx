@@ -7,8 +7,8 @@ import ProjectCard from '../components/cards/ProjectCard';
 
 export default function PortfolioGrid() {
   const [activeCategory, setActiveCategory] = useState('All');
-  const [filteredProjects, setFilteredProjects] = useState([]);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [filteredProjects, setFilteredProjects] = useState(portfolioData);
+  const [isAnimating, setIsAnimating] = useState(true);
   const [displayLimit, setDisplayLimit] = useState(9); // Initial 9 items
   const loaderRef = useRef(null);
 

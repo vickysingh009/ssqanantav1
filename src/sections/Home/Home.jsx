@@ -14,6 +14,15 @@ const ContactUs = lazy(() => import('../ContactUs/ContactUs'));
 import SEO from '../../components/seo/SEO';
 
 const Home = () => {
+  const SectionLoader = () => (
+    <div className="w-full h-full min-h-[300px] flex justify-center items-center bg-[#F8F9FA]">
+      <div className="flex flex-col items-center gap-4">
+        <div className="w-8 h-8 md:w-10 md:h-10 border-2 border-[#B89672]/30 border-t-[#B89672] rounded-full animate-spin"></div>
+        <span className="text-[#8B7355] text-xs font-semibold uppercase tracking-widest animate-pulse">Loading...</span>
+      </div>
+    </div>
+  );
+
   return (
     <div className="home-container">
       <SEO
@@ -24,29 +33,49 @@ const Home = () => {
       <HeroSection />
 
       {/* 
-        Below-the-fold components are loaded via React.lazy() to keep initial payload small. 
-        We use a single Suspense boundary so they render as soon as fetched, ensuring 
-        anchor links (like #contact) can reliably scroll to the correct DOM heights without layout-shifts. 
+        Below-the-fold components are wrapped individually in LazyViewportReveal 
+        and Suspense boundaries. This ensures they ONLY fetch when scrolled near,
+        and won't block or hide other already-loaded sections while fetching.
       */}
-      <Suspense fallback={
-        <div className="min-h-screen w-full flex justify-center items-center bg-[#F8F9FA]">
-          <div className="flex flex-col items-center gap-4">
-            <div className="w-8 h-8 md:w-10 md:h-10 border-2 border-[#B89672]/30 border-t-[#B89672] rounded-full animate-spin"></div>
-            <span className="text-[#8B7355] text-xs font-semibold uppercase tracking-widest animate-pulse">Loading Room...</span>
+      <LazyViewportReveal minHeight="150px">
+        <Suspense fallback={<SectionLoader />}>
+          <Ticker />
+        </Suspense>
+      </LazyViewportReveal>
+
+      <LazyViewportReveal minHeight="800px">
+        <Suspense fallback={<SectionLoader />}>
+          <div id="services">
+            <Services />
           </div>
-        </div>
-      }>
-        <Ticker />
-        <div id="services">
-          <Services />
-        </div>
-        <WhyChooseUs />
-        <Portfolio />
-        <Walkthrough />
-        <div id="contact">
-          <ContactUs />
-        </div>
-      </Suspense>
+        </Suspense>
+      </LazyViewportReveal>
+
+      <LazyViewportReveal minHeight="600px">
+        <Suspense fallback={<SectionLoader />}>
+          <WhyChooseUs />
+        </Suspense>
+      </LazyViewportReveal>
+
+      <LazyViewportReveal minHeight="800px">
+        <Suspense fallback={<SectionLoader />}>
+          <Portfolio />
+        </Suspense>
+      </LazyViewportReveal>
+
+      <LazyViewportReveal minHeight="800px">
+        <Suspense fallback={<SectionLoader />}>
+          <Walkthrough />
+        </Suspense>
+      </LazyViewportReveal>
+
+      <LazyViewportReveal minHeight="500px">
+        <Suspense fallback={<SectionLoader />}>
+          <div id="contact">
+            <ContactUs />
+          </div>
+        </Suspense>
+      </LazyViewportReveal>
     </div>
   );
 };

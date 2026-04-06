@@ -6,6 +6,7 @@ import SplashScreen from './components/layout/SplashScreen';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import NavigationProgress from './components/layout/NavigationProgress';
 import FloatingChat from './components/widgets/FloatingChat';
 import ConsultForm from './components/widgets/ConsultForm';
 
@@ -62,20 +63,19 @@ function App() {
 
   return (
     <HelmetProvider>
+      <NavigationProgress />
       <ScrollToTop />
       <Navbar isHome={location.pathname === '/'} />
       {showSplash && <SplashScreen onComplete={() => setShowSplash(false)} />}
-      <Suspense fallback={<PageLoader />}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/portfolio" element={<PortfolioPage />} />
-          <Route path="/projects" element={<ProjectsPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/project/:id" element={<DetailPageWrapper />} />
-        </Routes>
-      </Suspense>
+      <Routes>
+        <Route path="/" element={<Suspense fallback={<PageLoader />}><Home /></Suspense>} />
+        <Route path="/services" element={<Suspense fallback={<PageLoader />}><ServicesPage /></Suspense>} />
+        <Route path="/portfolio" element={<Suspense fallback={<PageLoader />}><PortfolioPage /></Suspense>} />
+        <Route path="/projects" element={<Suspense fallback={<PageLoader />}><ProjectsPage /></Suspense>} />
+        <Route path="/about" element={<Suspense fallback={<PageLoader />}><AboutPage /></Suspense>} />
+        <Route path="/contact" element={<Suspense fallback={<PageLoader />}><ContactPage /></Suspense>} />
+        <Route path="/project/:id" element={<Suspense fallback={<PageLoader />}><DetailPageWrapper /></Suspense>} />
+      </Routes>
       <Footer />
       <FloatingChat />
       <ConsultForm />
