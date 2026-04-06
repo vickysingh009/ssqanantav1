@@ -17,6 +17,10 @@ import video5 from '../assets/video/video 5.mp4';
 import video5Webm from '../assets/video/video 5.webm';
 import video6 from '../assets/video/video 6.mp4';
 import video6Webm from '../assets/video/video 6.webm';
+import video7 from '../assets/video/video 7.mp4';
+import video8 from '../assets/video/video 8.mp4';
+import video9 from '../assets/video/video 9.mp4';
+import video10 from '../assets/video/video 10.mp4';
 
 // Import New Local Thumbnails
 import thumb1 from '../assets/video/video 1.webp';
@@ -25,6 +29,10 @@ import thumb3 from '../assets/video/video 3.webp';
 import thumb4 from '../assets/video/video 4.webp';
 import thumb5 from '../assets/video/video 5.webp';
 import thumb6 from '../assets/video/video 6.webp';
+import thumb7 from '../assets/video/video 7.webp';
+import thumb8 from '../assets/video/video 8.webp';
+import thumb9 from '../assets/video/video 9.webp';
+import thumb10 from '../assets/video/video 10.webp';
 
 const allProjects = [
   {
@@ -86,6 +94,46 @@ const allProjects = [
     video: video6,
     videoWebm: video6Webm,
     desc: "Seamlessly blending indoor luxury with the vast beauty of the arid landscape."
+  },
+  {
+    id: 7,
+    title: "Interior Walkthrough",
+    duration: "",
+    category: "Interior",
+    thumbnail: thumb7,
+    video: video7,
+    videoWebm: null,
+    desc: "A curated journey through refined interiors crafted for modern living."
+  },
+  {
+    id: 8,
+    title: "Luxury Space Design",
+    duration: "",
+    category: "Residential",
+    thumbnail: thumb8,
+    video: video8,
+    videoWebm: null,
+    desc: "Where comfort meets sophistication in every corner of the home."
+  },
+  {
+    id: 9,
+    title: "Contemporary Living",
+    duration: "",
+    category: "Interior",
+    thumbnail: thumb9,
+    video: video9,
+    videoWebm: null,
+    desc: "Clean lines, warm textures, and purposeful design for modern families."
+  },
+  {
+    id: 10,
+    title: "Modern Home Tour",
+    duration: "",
+    category: "Residential",
+    thumbnail: thumb10,
+    video: video10,
+    videoWebm: null,
+    desc: "A complete home transformation celebrating light, space, and elegance."
   }
 ];
 
@@ -136,35 +184,41 @@ const ProjectCard = ({ project, index }) => {
       className={`flex flex-col lg:flex-row items-center gap-10 md:gap-16 group ${index % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}
     >
 
-      {/* Video Container */}
-      <div className="relative w-full lg:w-[60%] aspect-[16/9] bg-[#EAE8E5] rounded-2xl overflow-hidden shadow-2xl border border-white/20">
+      {/* Video Container — natural aspect ratio, no cropping */}
+      <div className="relative w-full lg:w-[60%] bg-[#1A1A1A] rounded-2xl overflow-hidden shadow-2xl border border-white/20">
 
         {hasVisited && (
           <video
             ref={videoRef}
-            className={`w-full h-full object-cover transition-opacity duration-500 ${isPlaying ? 'opacity-100' : 'opacity-0'}`}
-            poster={project.thumbnail}
+            className={`w-full h-auto max-h-[70vh] block transition-opacity duration-500 ${isPlaying ? 'opacity-100' : 'opacity-0 absolute inset-0 w-full h-full object-contain'}`}
+            poster={project.thumbnail || undefined}
             loop
-            muted // Required for autoplay
+            muted
             playsInline
             controls={isPlaying}
             preload="none"
           >
-            <source src={project.videoWebm} type="video/webm" />
+            {project.videoWebm && <source src={project.videoWebm} type="video/webm" />}
             <source src={project.video} type="video/mp4" />
           </video>
         )}
 
-        {!isPlaying && (
-          <img
-            src={project.thumbnail}
-            alt={project.title}
-            loading="lazy"
-            decoding="async"
-            width="1920"
-            height="1080"
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-          />
+        {!isPlaying && project.thumbnail && (
+          <div className="relative w-full overflow-hidden" style={{maxHeight: '70vh'}}>
+            <img
+              src={project.thumbnail}
+              alt={project.title}
+              loading="lazy"
+              decoding="async"
+              className="w-full h-full object-cover block transition-transform duration-700 group-hover:scale-105"
+              style={{ objectPosition: 'center center' }}
+            />
+          </div>
+        )}
+        {!isPlaying && !project.thumbnail && (
+          <div className="aspect-[16/9] w-full bg-[#2A2520] flex items-center justify-center">
+            <svg className="w-12 h-12 text-[#B89672]/40" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
         )}
 
 
