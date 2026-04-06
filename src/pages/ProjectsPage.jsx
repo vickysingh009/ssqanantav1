@@ -1,9 +1,4 @@
 import React, { useState, useRef } from 'react';
-import imgResVilla from '../assets/images/portfolio/residential/residential_2.webp';
-import imgCommLoft from '../assets/images/portfolio/commercial/commercial_2.webp';
-import imgBed01 from '../assets/images/portfolio/bedroom/bedroom_1.webp';
-import imgCommLobby from '../assets/images/portfolio/commercial/commercial_1.webp';
-import imgKitchen01 from '../assets/images/portfolio/kitchen/kitchen_1.webp';
 // Import Local Videos
 import video1 from '../assets/video/video 1.mp4';
 import video1Webm from '../assets/video/video 1.webm';
