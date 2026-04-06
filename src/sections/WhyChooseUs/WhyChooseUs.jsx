@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './WhyChooseUs.css';
 import imgLivingRoom1 from '../../assets/images/why choose us/why choose us.webp';
 import imgLivingRoom2 from '../../assets/images/why choose us/why choose us 2.webp';
@@ -8,16 +8,30 @@ const images = [imgLivingRoom1, imgLivingRoom2, imgLivingRoom3];
 
 const WhyChooseUs = () => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [imagesPreloaded, setImagesPreloaded] = useState(false);
+  const sectionRef = useRef(null);
 
-  // Preload image on hover so switching feels instant
-  const preloadImage = (index) => {
-    if (index !== activeImageIndex) {
-      const img = new Image();
-      img.src = images[index];
-    }
-  };
+  // Preload ALL 3 images when section enters viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !imagesPreloaded) {
+          images.forEach((src) => {
+            const img = new Image();
+            img.src = src;
+          });
+          setImagesPreloaded(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '200px 0px' }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, [imagesPreloaded]);
+
   return (
-    <section className="why-choose-us-section">
+    <section ref={sectionRef} className="why-choose-us-section">
       <div className="wcu-main-container">
 
         {/* Left Content */}
@@ -70,17 +84,14 @@ const WhyChooseUs = () => {
             <span
               className={`wcu-dot cream ${activeImageIndex === 0 ? 'active' : ''}`}
               onClick={() => setActiveImageIndex(0)}
-              onMouseEnter={() => preloadImage(0)}
             ></span>
             <span
               className={`wcu-dot blue ${activeImageIndex === 1 ? 'active' : ''}`}
               onClick={() => setActiveImageIndex(1)}
-              onMouseEnter={() => preloadImage(1)}
             ></span>
             <span
               className={`wcu-dot green ${activeImageIndex === 2 ? 'active' : ''}`}
               onClick={() => setActiveImageIndex(2)}
-              onMouseEnter={() => preloadImage(2)}
             ></span>
           </div>
 
@@ -88,14 +99,12 @@ const WhyChooseUs = () => {
             {images.map((imgSrc, index) => (
               <img
                 key={index}
-                src={activeImageIndex === index ? imgSrc : undefined}
+                src={imagesPreloaded ? imgSrc : (activeImageIndex === index ? imgSrc : undefined)}
                 alt={`Interior design color variant ${index + 1}`}
                 className={`variant-img ${activeImageIndex === index ? 'active' : ''}`}
-                loading="lazy"
                 decoding="async"
                 width="800"
                 height="800"
-                style={{ display: activeImageIndex === index ? 'block' : 'none' }}
               />
             ))}
           </div>
